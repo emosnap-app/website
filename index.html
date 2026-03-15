@@ -23,6 +23,7 @@
   --radius-lg: 24px;
   --radius-md: 18px;
   --radius-sm: 999px;
+  --qr-size: 168px;
 }
 
 * {
@@ -174,9 +175,11 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: min(100%, var(--qr-size));
   min-height: 56px;
   margin-top: 28px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 16px 20px;
   border-radius: 16px;
   background: var(--button);
@@ -185,6 +188,7 @@ h1 {
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.01em;
+  line-height: 1.4;
 }
 
 .cta:focus-visible,
@@ -212,8 +216,8 @@ h1 {
 
 .qr img {
   display: block;
-  width: 168px;
-  height: 168px;
+  width: var(--qr-size);
+  height: var(--qr-size);
   border-radius: 14px;
   border: 1px solid rgba(29, 29, 31, 0.08);
   background: #fff;
