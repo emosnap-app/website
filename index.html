@@ -23,7 +23,7 @@
   --radius-lg: 24px;
   --radius-md: 18px;
   --radius-sm: 999px;
-  --qr-size: 168px;
+  --qr-size: 196px;
 }
 
 * {
@@ -138,7 +138,8 @@ h1 {
 }
 
 .usage-card {
-  margin-top: 24px;
+  width: min(100%, 720px);
+  margin: 24px auto 0;
   padding: 18px 18px 16px;
   border-radius: var(--radius-md);
   background: var(--surface-strong);
@@ -180,7 +181,7 @@ h1 {
   margin-top: 28px;
   margin-left: auto;
   margin-right: auto;
-  padding: 16px 20px;
+  padding: 16px 12px;
   border-radius: 16px;
   background: var(--button);
   color: var(--button-text);
@@ -189,6 +190,7 @@ h1 {
   font-weight: 700;
   letter-spacing: 0.01em;
   line-height: 1.4;
+  white-space: nowrap;
 }
 
 .cta:focus-visible,
@@ -231,7 +233,8 @@ h1 {
 }
 
 .request {
-  margin-top: 18px;
+  width: min(100%, 720px);
+  margin: 18px auto 0;
   padding: 20px;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.96);
