@@ -1,344 +1,1199 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" itemscope itemtype="http://schema.org/WebPage" translate="no">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="EmoSnapは、写真にそのときの感情や気分を一緒に記録できるiPhone向けベータ版アプリです。">
-<title>EmoSnap β</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EmoSnap | 写真は残るのに、気持ちは消える。</title>
+  <meta name="description" content="写真にそのときの気持ちを直感的に残し、あとで振り返って気づきを得るカメラアプリ。まずは無料で体験し、必要なら買い切り¥700でちゃんと残す。" />
+  <meta name="google" content="notranslate" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,700;9..144,1,700&family=Noto+Serif+JP:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet" />
 
-<style>
-:root {
-  color-scheme: light;
-  --bg: #f6f7f9;
-  --surface: rgba(255, 255, 255, 0.88);
-  --surface-strong: #ffffff;
-  --text: #1d1d1f;
-  --muted: #6e6e73;
-  --line: rgba(29, 29, 31, 0.08);
-  --tag-bg: #eceef2;
-  --button: #111111;
-  --button-hover: #000000;
-  --button-text: #ffffff;
-  --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-  --radius-lg: 24px;
-  --radius-md: 18px;
-  --radius-sm: 999px;
-  --qr-size: 196px;
-}
+  <style>
+    :root {
+      --bg: #FAF6F0;
+      --ink: #1A1612;
+      --ink-mid: #4A3F35;
+      --ink-soft: #8A7A6E;
+      --paper: #FFFCF8;
+      --line: rgba(26,22,18,0.07);
+      --brand: #E8593A;
+      --brand-dark: #C43D22;
+      --brand-glow: rgba(232,89,58,0.15);
+      --teal: #0D6B6E;
+      --teal-soft: #D5EDEC;
+      --gold: #F2B84B;
+      --gold-soft: rgba(242,184,75,0.15);
+      --r-xl: 36px;
+      --r-lg: 26px;
+      --r-md: 18px;
+      --max: 1140px;
+      --shadow-sm: 0 4px 20px rgba(26,22,18,0.07);
+      --shadow-md: 0 12px 48px rgba(26,22,18,0.10);
+      --shadow-lg: 0 24px 80px rgba(26,22,18,0.13);
+    }
 
-* {
-  box-sizing: border-box;
-}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-html {
-  -webkit-text-size-adjust: 100%;
-}
+    body {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 36%),
-    linear-gradient(180deg, #fbfbfc 0%, var(--bg) 100%);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
+    /* Grain overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+    }
 
-a {
-  color: inherit;
-}
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
 
-.page {
-  width: min(100%, 840px);
-  margin: 0 auto;
-  padding: 24px 18px 40px;
-}
+    .wrap {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
 
-.hero {
-  position: relative;
-  overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-  padding: 28px 20px 24px;
-  text-align: center;
-  backdrop-filter: blur(12px);
-}
+    /* ─── HEADER ─── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,246,240,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; padding: 16px 0;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .brand-logo {
+      width: 44px; height: 44px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; box-shadow: 0 8px 24px rgba(232,89,58,0.25);
+    }
+    .brand img { width: 44px; height: 44px; border-radius: 14px; box-shadow: 0 8px 24px rgba(232,89,58,0.25); }
+    .brand-name { font-weight: 900; font-size: 1.1rem; letter-spacing: 0.01em; }
+    .brand-sub { font-size: 0.78rem; color: var(--ink-soft); display: block; }
+    .nav-links { display: flex; align-items: center; gap: 16px; }
+    .nav-links a { font-size: 0.9rem; color: var(--ink-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color: #fff;
+      padding: 10px 20px; border-radius: 999px;
+      font-weight: 700; font-size: 0.88rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-links a.nav-cta,
+    .nav-links a.nav-cta:hover {
+      color: #fff;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(232,89,58,0.32); }
 
-.tag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 32px;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  background: var(--tag-bg);
-  color: #4a4a4f;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
+    /* ─── HERO ─── */
+    .hero { padding: 60px 0 40px; }
 
-.hero-emoji {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  width: min(100%, 220px);
-  margin: 18px auto 4px;
-}
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
 
-.emoji-bubble {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 56px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(29, 29, 31, 0.06);
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
-  font-size: 1.45rem;
-}
+    /* Left column */
+    .hero-left {}
 
-h1 {
-  margin: 18px 0 0;
-  font-size: clamp(1.9rem, 6vw, 2.5rem);
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-}
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal-soft); color: var(--teal);
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .pill::before { content: "●"; font-size: 0.5rem; }
 
-.lead {
-  margin: 18px auto 0;
-  max-width: 28rem;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #2f2f33;
-}
+    .hero-h1 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--brand);
+    }
 
-.feature-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 18px;
-}
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 32px;
+      max-width: 36rem;
+    }
+    .hero-lead strong { color: var(--ink); }
 
-.feature-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 34px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(29, 29, 31, 0.06);
-  color: #44454a;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
+    .persona-box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 22px 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .persona-box .persona-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--brand); margin-bottom: 12px;
+    }
+    .persona-thoughts {
+      display: grid; gap: 8px;
+    }
+    .persona-thought {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.92rem; color: var(--ink-mid);
+    }
+    .persona-thought::before { content: "「"; color: var(--ink-soft); flex-shrink: 0; }
+    .persona-thought::after  { content: "」"; color: var(--ink-soft); flex-shrink: 0; }
 
-.usage-card {
-  width: min(100%, 720px);
-  margin: 24px auto 0;
-  padding: 18px 18px 16px;
-  border-radius: var(--radius-md);
-  background: var(--surface-strong);
-  border: 1px solid rgba(29, 29, 31, 0.06);
-  text-align: left;
-}
+    .cta-stack { display: flex; flex-direction: column; gap: 12px; }
+    .cta-main {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+      color: #fff; font-weight: 700; font-size: 1.05rem;
+      padding: 18px 28px; border-radius: var(--r-md);
+      box-shadow: 0 16px 40px rgba(232,89,58,0.28);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-main:hover { transform: translateY(-2px); box-shadow: 0 20px 48px rgba(232,89,58,0.36); }
+    .cta-note {
+      font-size: 0.82rem; color: var(--ink-soft); text-align: center;
+    }
 
-.usage-title {
-  margin: 0 0 10px;
-  font-size: 0.95rem;
-  font-weight: 700;
-}
+    /* Right column */
+    .hero-right { position: relative; }
 
-.usage-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+    .phone-visual {
+      position: relative;
+      background: linear-gradient(160deg, #F0EAE0, #E5DDD2);
+      border-radius: var(--r-xl);
+      padding: 32px 24px 0;
+      min-height: 520px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--line);
+    }
+    .phone-visual::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 0%, rgba(242,184,75,0.3), transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(232,89,58,0.12), transparent 40%);
+    }
+    .phone-frame {
+      position: relative;
+      background: #1A1612;
+      border-radius: 42px;
+      border: 8px solid #1A1612;
+      box-shadow: 0 32px 80px rgba(26,22,18,0.35), inset 0 0 0 1px rgba(255,255,255,0.08);
+      overflow: hidden;
+      aspect-ratio: 9/19.5;
+      max-width: 220px;
+      margin: 0 auto;
+    }
+    .phone-frame img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .phone-frame-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, #2A2420 0%, #1A1612 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    }
+    .phone-frame-placeholder .app-icon { font-size: 3rem; }
+    .phone-frame-placeholder span { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
 
-.usage-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  line-height: 1.9;
-}
+    .floating-cards {
+      position: absolute; bottom: 24px; left: 0; right: 0;
+      display: flex; justify-content: space-between; padding: 0 16px;
+    }
+    .float-card {
+      background: rgba(255,252,248,0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      padding: 12px 16px;
+      box-shadow: var(--shadow-md);
+      font-size: 0.82rem;
+    }
+    .float-card strong { display: block; font-size: 0.88rem; margin-bottom: 2px; }
+    .float-card span { color: var(--ink-soft); }
 
-.usage-icon {
-  flex: 0 0 auto;
-  width: 1.5em;
-  text-align: center;
-}
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-top: 24px;
+    }
+    .hero-stat {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--r-md); padding: 16px;
+      text-align: center; box-shadow: var(--shadow-sm);
+    }
+    .hero-stat .num {
+      font-family: "Fraunces", serif; font-size: 2rem;
+      color: var(--brand); line-height: 1; display: block; margin-bottom: 4px;
+    }
+    .hero-stat span { font-size: 0.8rem; color: var(--ink-soft); }
 
-.cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: min(100%, var(--qr-size));
-  min-height: 56px;
-  margin-top: 28px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 16px 12px;
-  border-radius: 16px;
-  background: var(--button);
-  color: var(--button-text);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1.4;
-  white-space: nowrap;
-}
+    /* ─── SECTIONS SHARED ─── */
+    section { padding: 80px 0; position: relative; z-index: 1; }
+    .section-kicker {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--brand); margin-bottom: 12px;
+    }
+    .section-h2 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1.2; letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .section-lead {
+      font-size: 1rem; color: var(--ink-mid);
+      max-width: 46rem; line-height: 1.8;
+    }
+    .section-head { margin-bottom: 48px; }
 
-.cta:focus-visible,
-.cta:hover {
-  background: var(--button-hover);
-}
+    /* Card base */
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--r-xl);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+    .card p { color: var(--ink-mid); font-size: 0.95rem; line-height: 1.8; }
 
-.cta:focus-visible {
-  outline: 3px solid rgba(0, 122, 255, 0.35);
-  outline-offset: 3px;
-}
+    /* ─── RISK ─── */
+    .risk-section { background: linear-gradient(180deg, var(--bg) 0%, #EDE5D8 100%); }
+    .risk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .risk-card {
+      background: linear-gradient(180deg, #FFFCF8, #FFF5EE);
+      border: 1px solid rgba(232,89,58,0.12);
+      border-radius: var(--r-xl); padding: 32px;
+      box-shadow: var(--shadow-sm);
+      position: relative; overflow: hidden;
+    }
+    .risk-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-dark));
+    }
+    .risk-card .risk-num {
+      font-family: "Fraunces", serif; font-size: 3.5rem;
+      color: rgba(232,89,58,0.08); line-height: 1;
+      position: absolute; top: 16px; right: 20px; font-weight: 700;
+    }
+    .risk-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .risk-card p { color: var(--ink-mid); font-size: 0.92rem; line-height: 1.8; }
 
-.note {
-  margin: 12px 0 0;
-  font-size: 0.82rem;
-  line-height: 1.6;
-  color: var(--muted);
-}
+    /* Pain box */
+    .pain-banner {
+      background: var(--ink); color: #fff;
+      border-radius: var(--r-xl); padding: 40px 48px;
+      margin-top: 32px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
+    }
+    .pain-banner h3 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      line-height: 1.3; margin-bottom: 12px;
+    }
+    .pain-banner p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.8; }
+    .pain-items { display: grid; gap: 14px; }
+    .pain-item {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,0.06); border-radius: var(--r-md); padding: 14px 18px;
+    }
+    .pain-item .icon { font-size: 1.4rem; flex-shrink: 0; }
+    .pain-item span { font-size: 0.92rem; color: rgba(255,255,255,0.85); }
 
-.qr {
-  margin: 18px auto 0;
-  width: fit-content;
-  text-align: center;
-}
+    /* ─── VALUE ─── */
+    .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
-.qr img {
-  display: block;
-  width: var(--qr-size);
-  height: var(--qr-size);
-  border-radius: 14px;
-  border: 1px solid rgba(29, 29, 31, 0.08);
-  background: #fff;
-}
+    .value-card { position: relative; overflow: hidden; }
+    .value-card:nth-child(1) { background: linear-gradient(160deg, #FFF8F5, #FFF2EC); border-color: rgba(232,89,58,0.1); }
+    .value-card:nth-child(2) { background: linear-gradient(160deg, #F0FAF9, #E5F4F3); border-color: rgba(13,107,110,0.1); }
+    .value-card:nth-child(3) { background: linear-gradient(160deg, #FFFBF0, #FFF5D6); border-color: rgba(242,184,75,0.15); }
 
-.qr p {
-  margin: 10px 0 0;
-  font-size: 0.78rem;
-  color: var(--muted);
-  line-height: 1.5;
-}
+    .value-number {
+      font-family: "Fraunces", serif; font-size: 4rem; font-weight: 700;
+      line-height: 1; margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .value-card:nth-child(2) .value-number {
+      background: linear-gradient(135deg, var(--teal), #0A5558);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .value-card:nth-child(3) .value-number {
+      background: linear-gradient(135deg, #C8930A, #A07208);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-.request {
-  width: min(100%, 720px);
-  margin: 18px auto 0;
-  padding: 20px;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(29, 29, 31, 0.06);
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
-  text-align: left;
-}
+    /* emo/creative strip */
+    .emo-strip {
+      margin-top: 32px;
+      background: linear-gradient(135deg, #1A1612 0%, #2E2520 100%);
+      border-radius: var(--r-xl); padding: 40px 48px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .emo-strip .emo-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(242,184,75,0.15); color: var(--gold);
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .emo-strip h3 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: #fff; line-height: 1.2; margin-bottom: 12px;
+    }
+    .emo-strip p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.8; }
+    .emo-features { display: grid; gap: 12px; margin-top: 20px; }
+    .emo-feature {
+      display: flex; align-items: center; gap: 12px;
+      color: rgba(255,255,255,0.8); font-size: 0.9rem;
+    }
+    .emo-feature::before { content: "→"; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .emo-visual {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-lg); padding: 32px;
+      display: grid; gap: 12px;
+    }
+    .emo-sample {
+      background: rgba(255,255,255,0.06); border-radius: var(--r-md); padding: 16px;
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.88rem; color: rgba(255,255,255,0.7);
+    }
+    .emo-sample .sample-emoji { font-size: 1.8rem; }
 
-.request h2 {
-  margin: 0 0 12px;
-  font-size: 1rem;
-  line-height: 1.4;
-}
+    /* ─── BRAND SCRIPT / 3 STAGES ─── */
+    .brandscript-section { background: linear-gradient(180deg, var(--bg), #EDE5D8); }
+    .stages { display: grid; gap: 0; }
+    .stage {
+      display: grid; grid-template-columns: 80px 1fr; gap: 0;
+      position: relative;
+    }
+    .stage:not(:last-child)::after {
+      content: "";
+      position: absolute; left: 39px; top: 80px; bottom: -1px;
+      width: 2px; background: linear-gradient(180deg, var(--brand), transparent);
+    }
+    .stage-num {
+      width: 80px; flex-shrink: 0;
+    }
+    .stage-circle {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Fraunces", serif; font-weight: 700; color: #fff; font-size: 1.2rem;
+      box-shadow: 0 8px 24px rgba(232,89,58,0.28);
+      position: relative; z-index: 1;
+    }
+    .stage-content {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--r-xl); padding: 28px 32px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .stage-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .stage-action {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 14px; padding: 8px 16px;
+      background: var(--brand-glow); color: var(--brand-dark);
+      border-radius: 999px; font-size: 0.85rem; font-weight: 700;
+    }
+    .stage-action::before { content: "👉"; }
+    .stage-content p { color: var(--ink-mid); font-size: 0.95rem; line-height: 1.8; }
+    .stage-quotes { display: grid; gap: 8px; margin-top: 12px; }
+    .stage-quote {
+      font-size: 0.88rem; color: var(--ink-mid); font-style: italic;
+      padding-left: 16px; border-left: 2px solid var(--brand);
+    }
 
-.request p {
-  margin: 0;
-  line-height: 1.8;
-  color: #2f2f33;
-}
+    /* Brandscript manifesto */
+    .manifesto {
+      background: var(--ink); border-radius: var(--r-xl);
+      padding: 48px; margin-top: 48px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      box-shadow: var(--shadow-lg);
+    }
+    .manifesto .m-left h3 {
+      font-family: "Fraunces", serif; font-style: italic;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: #fff; line-height: 1.3; margin-bottom: 20px;
+    }
+    .manifesto .m-left p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.9; }
+    .manifesto .m-right {}
+    .manifesto-points { display: grid; gap: 14px; }
+    .manifesto-point {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: rgba(255,255,255,0.06); border-radius: var(--r-md);
+      padding: 16px 20px;
+    }
+    .manifesto-point .mp-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .manifesto-point span { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
+    .m-right h4 {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
+    }
 
-@media (min-width: 640px) {
-  .page {
-    padding: 48px 20px 56px;
-  }
+    /* ─── GUIDE / STORY ─── */
+    .guide-layout {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; align-items: center;
+    }
+    .guide-image {
+      border-radius: var(--r-xl); overflow: hidden;
+      box-shadow: var(--shadow-lg); aspect-ratio: 4/3; min-height: 360px;
+      background: linear-gradient(160deg, #E8E0D5, #D5C9BB);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+    }
+    .guide-image img { width: 100%; height: 100%; object-fit: cover; }
+    .checklist { display: grid; gap: 12px; margin-top: 24px; list-style: none; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.95rem; color: var(--ink-mid);
+    }
+    .checklist li::before {
+      content: "✓"; flex-shrink: 0;
+      width: 24px; height: 24px;
+      background: var(--brand-glow); color: var(--brand-dark);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 900; margin-top: 2px;
+    }
 
-  .hero {
-    padding: 40px 32px 32px;
-  }
+    /* ─── STEPS ─── */
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .step-card { position: relative; overflow: hidden; }
+    .step-card::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(232,89,58,0.04), transparent);
+    }
+    .step-num {
+      font-family: "Fraunces", serif; font-size: 4rem; font-weight: 700;
+      color: rgba(232,89,58,0.12); line-height: 1; margin-bottom: 16px;
+    }
+    .step-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .step-card p { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.8; }
 
-  .usage-card,
-  .request {
-    padding: 22px 24px;
-  }
-}
+    /* ─── TESTIMONIALS ─── */
+    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .testi-card {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--r-xl); padding: 32px; box-shadow: var(--shadow-sm);
+    }
+    .testi-card blockquote {
+      font-size: 1.05rem; color: var(--ink);
+      line-height: 1.8; margin-bottom: 16px;
+      font-style: italic;
+    }
+    .testi-card blockquote::before { content: "「"; color: var(--brand); }
+    .testi-card blockquote::after  { content: "」"; color: var(--brand); }
+    .testi-meta { font-size: 0.82rem; color: var(--ink-soft); }
+    .testi-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 16px; color: var(--teal); font-weight: 700; font-size: 0.88rem;
+      transition: gap 0.2s;
+    }
+    .testi-link:hover { gap: 10px; }
+    .testi-link::after { content: "→"; }
+    .continue-card {
+      background: linear-gradient(160deg, var(--teal-soft), rgba(255,255,255,0.9));
+      border-color: rgba(13,107,110,0.12);
+    }
+    .continue-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+    .continue-points { display: grid; gap: 10px; list-style: none; margin-top: 16px; }
+    .continue-points li {
+      font-size: 0.9rem; color: var(--ink-mid);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .continue-points li::before { content: "→"; color: var(--teal); font-weight: 700; }
 
-@media (min-width: 1024px) {
-  .page {
-    width: min(100%, 980px);
-  }
-}
-</style>
+    /* ─── PRICE ─── */
+    .price-section { background: linear-gradient(180deg, #EDE5D8, var(--bg)); }
+    .price-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+
+    .price-dark {
+      background: linear-gradient(160deg, #1A1612, #2E2520);
+      border-radius: var(--r-xl); padding: 40px;
+      box-shadow: var(--shadow-lg); color: #fff;
+    }
+    .price-dark .kicker { color: var(--gold); }
+    .price-dark h2 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.2; margin: 16px 0 14px;
+    }
+    .price-dark p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.8; }
+    .price-tag {
+      display: flex; align-items: baseline; gap: 12px;
+      margin: 28px 0 8px;
+    }
+    .price-tag .label { font-size: 0.9rem; color: rgba(255,255,255,0.55); }
+    .price-tag .amount {
+      font-family: "Fraunces", serif; font-size: 4.5rem;
+      font-weight: 700; color: #fff; line-height: 1;
+    }
+    .price-note { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-bottom: 28px; }
+    .price-cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color: #fff; font-weight: 700; padding: 16px 28px;
+      border-radius: var(--r-md);
+      box-shadow: 0 12px 36px rgba(232,89,58,0.35);
+      transition: transform 0.2s; text-align: center;
+    }
+    .price-cta:hover { transform: translateY(-2px); }
+    .price-cta-note {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.62);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .price-features {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--r-xl); padding: 36px;
+      box-shadow: var(--shadow-sm);
+    }
+    .price-features h3 { font-size: 1.2rem; margin-bottom: 24px; }
+    .feature-list { display: grid; gap: 16px; list-style: none; }
+    .feature-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding-bottom: 16px; border-bottom: 1px solid var(--line);
+    }
+    .feature-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .feature-list .feat-icon {
+      width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; background: var(--brand-glow);
+    }
+    .feature-list .feat-text strong { display: block; font-size: 0.95rem; margin-bottom: 2px; }
+    .feature-list .feat-text span { font-size: 0.85rem; color: var(--ink-soft); }
+
+    .free-note {
+      margin-top: 20px; padding: 20px 24px;
+      background: var(--teal-soft); border: 1px solid rgba(13,107,110,0.12);
+      border-radius: var(--r-md);
+      font-size: 0.88rem; color: var(--teal);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .free-note::before { content: "ℹ️"; flex-shrink: 0; }
+
+    /* ─── FAQ ─── */
+    .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .faq-item {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-item h3 { font-size: 1rem; margin-bottom: 10px; font-weight: 700; }
+    .faq-item p { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.8; }
+
+    /* ─── LEADGEN / FINAL CTA ─── */
+    .leadgen-section { background: var(--bg); }
+    .leadgen-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; }
+    .leadgen-main {
+      background: linear-gradient(160deg, var(--brand) 0%, var(--brand-dark) 100%);
+      border-radius: var(--r-xl); padding: 48px;
+      box-shadow: 0 24px 80px rgba(232,89,58,0.28); color: #fff;
+    }
+    .leadgen-main h2 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.2; margin-bottom: 14px;
+    }
+    .leadgen-main p { font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 28px; }
+    .leadgen-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #fff; color: var(--brand-dark);
+      font-weight: 800; padding: 16px 28px; border-radius: var(--r-md);
+      box-shadow: 0 8px 24px rgba(26,22,18,0.15);
+      transition: transform 0.2s;
+    }
+    .leadgen-btn:hover { transform: translateY(-2px); }
+    .leadgen-btn::after { content: "→"; }
+    .leadgen-btn-note { display: block; margin-top: 12px; font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+
+    .target-card {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--r-xl); padding: 36px; box-shadow: var(--shadow-sm);
+    }
+    .target-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+    .target-list { display: grid; gap: 12px; list-style: none; }
+    .target-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.92rem; color: var(--ink-mid);
+      padding: 12px 16px; background: var(--bg); border-radius: var(--r-md);
+    }
+    .target-list li::before { content: "✓"; color: var(--brand); font-weight: 900; flex-shrink: 0; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      padding: 48px 0 64px;
+      border-top: 1px solid var(--line);
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .footer-brand strong { font-size: 1rem; font-weight: 900; }
+    .footer-brand p { font-size: 0.85rem; color: var(--ink-soft); margin-top: 6px; max-width: 28rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+    .footer-links a { font-size: 0.88rem; color: var(--ink-soft); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-left > * { animation: fadeUp 0.6s ease both; }
+    .pill             { animation-delay: 0.05s; }
+    .hero-h1          { animation-delay: 0.15s; }
+    .hero-lead        { animation-delay: 0.25s; }
+    .persona-box      { animation-delay: 0.30s; }
+    .cta-stack        { animation-delay: 0.38s; }
+    .hero-right       { animation: fadeUp 0.8s 0.2s ease both; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .hero-layout, .guide-layout, .price-layout, .leadgen-grid,
+      .pain-banner, .emo-strip, .manifesto {
+        grid-template-columns: 1fr;
+      }
+      .risk-grid, .value-grid, .steps-grid { grid-template-columns: 1fr 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .phone-visual { min-height: 360px; }
+      .manifesto { padding: 32px; }
+      .pain-banner { padding: 32px; }
+    }
+    @media (max-width: 640px) {
+      .wrap { width: calc(100% - 24px); }
+      section { padding: 56px 0; }
+      .risk-grid, .value-grid, .steps-grid, .faq-grid,
+      .hero-stats { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .leadgen-main { padding: 32px 28px; }
+      .cta-main { width: 100%; }
+    }
+  </style>
 </head>
-
 <body>
-<main class="page">
-  <section class="hero" aria-labelledby="page-title">
-    <p class="tag">iPhone ベータ版</p>
 
-    <div class="hero-emoji" aria-hidden="true">
-      <div class="emoji-bubble">📸</div>
-      <div class="emoji-bubble">🙂</div>
-      <div class="emoji-bubble">✨</div>
+<!-- ─── HEADER ─── -->
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <img src="assets/logo.png" alt="EmoSnap" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="brand-logo" style="display:none">📸</div>
+      <div>
+        <span class="brand-name">EmoSnap</span>
+        <span class="brand-sub">写真と感情を一緒に残す iOS app</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#value">価値</a>
+      <a href="#how">使い方</a>
+      <a href="#price">価格</a>
+      <a class="nav-cta" href="https://testflight.apple.com/join/brPbWXyK">無料で試す</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-layout">
+
+        <!-- Left -->
+        <div class="hero-left">
+          <div class="pill">Emotion camera for iPhone</div>
+
+          <h1 class="hero-h1">写真は残るのに、<br><em>気持ちは消える。</em></h1>
+
+          <p class="hero-lead">
+            「なんか疲れてるけど理由がわからない」——<br>
+            EmoSnapは、<strong>写真を撮る行為を感情の記録に変える</strong>アプリです。<br>
+            考えなくていい。整えなくていい。10秒で吐き出して、そのまま残す。
+          </p>
+
+          <div class="persona-box">
+            <div class="persona-label">こんな気持ち、ありませんか？</div>
+            <div class="persona-thoughts">
+              <div class="persona-thought">今日も1日終わったけど、何してたっけ？</div>
+              <div class="persona-thought">なんか疲れてるけど理由がわからない</div>
+              <div class="persona-thought">写真は撮ってるけど、見返しても"ただの記録"なんだよな</div>
+              <div class="persona-thought">日記とか無理。続かないし、書くのめんどい</div>
+            </div>
+          </div>
+
+          <div class="cta-stack">
+            <a class="cta-main" href="https://testflight.apple.com/join/brPbWXyK">ベータ版を無料で試す</a>
+            <span class="cta-note">β版は TestFlight で公開中。まずは1週間だけ試してください。<br>気に入ったらアプリ内で¥700（買い切り）。</span>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div class="hero-right">
+          <div class="phone-visual">
+            <div class="phone-frame">
+              <img src="assets/lp-hero.jpeg" alt="EmoSnap app preview"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="phone-frame-placeholder" style="display:none">
+                <span class="app-icon">📸</span>
+                <span>EmoSnap</span>
+              </div>
+            </div>
+            <div class="floating-cards">
+              <div class="float-card">
+                <strong>10秒で記録</strong>
+                <span>気合いがいらない</span>
+              </div>
+              <div class="float-card">
+                <strong>買い切り ¥700</strong>
+                <span>サブスクなし</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="num">10秒</span>
+              <span>1回の記録目安</span>
+            </div>
+            <div class="hero-stat">
+              <span class="num">7日</span>
+              <span>変化が見え始める</span>
+            </div>
+            <div class="hero-stat">
+              <span class="num">80%</span>
+              <span>継続率目標</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-
-    <h1 id="page-title">写真に「気分」を残すカメラ</h1>
-
-    <p class="lead">
-      EmoSnapは、写真にそのときの感情や気分を一緒に記録できるアプリです。
-    </p>
-
-    <p class="lead">
-      撮った写真に気分や絵文字を添えて残し、あとでカレンダーで振り返れます。
-    </p>
-
-    <div class="feature-row" aria-label="主な特徴">
-      <span class="feature-pill">🙂 気分を記録</span>
-      <span class="feature-pill">✨ 絵文字で残す</span>
-      <span class="feature-pill">🗓️ あとで振り返る</span>
-    </div>
-
-    <section class="usage-card" aria-labelledby="usage-title">
-      <h2 id="usage-title" class="usage-title">利用例</h2>
-      <ul class="usage-list" aria-label="利用例">
-        <li><span class="usage-icon" aria-hidden="true">📔</span><span>日記の代わりに</span></li>
-        <li><span class="usage-icon" aria-hidden="true">🧒</span><span>子どもの気持ちの記録に</span></li>
-        <li><span class="usage-icon" aria-hidden="true">💭</span><span>自分の心のログとして</span></li>
-      </ul>
-    </section>
-
-    <a class="cta" href="https://testflight.apple.com/join/brPbWXyK">TestFlightで試してみる</a>
-
-    <p class="note">※ AppleのTestFlightアプリが必要です</p>
-
-    <div class="qr" aria-label="TestFlight QRコード">
-      <img
-        src="https://api.qrserver.com/v1/create-qr-code/?size=336x336&data=https%3A%2F%2Ftestflight.apple.com%2Fjoin%2FbrPbWXyK"
-        alt="TestFlightページを開くQRコード"
-        loading="lazy"
-        decoding="async"
-      >
-      <p>スマホで読み取ってインストール</p>
-    </div>
-
-    <aside class="request" aria-labelledby="request-title">
-      <h2 id="request-title">お願い 📝</h2>
-      <p>
-        現在ベータテスト中のため、<br>
-        使ってみた感想を15〜30分ほど<br>
-        聞かせていただけると嬉しいです。<br><br>
-        アプリ改善のためにとても役立ちます。<br><br>
-        気づいたことは、TestFlightのフィードバックから送っていただいても大歓迎です。
-      </p>
-    </aside>
   </section>
+
+  <!-- ─── RISK ─── -->
+  <section class="risk-section" id="risk">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Risk</div>
+        <h2 class="section-h2">感情が見えないまま、<br>生き続けることになります。</h2>
+        <p class="section-lead">写真だけ増えて、感情だけ消えると、毎日のしんどさは原因不明のまま残ります。見えないものは調整できません。</p>
+      </div>
+
+      <div class="risk-grid">
+        <article class="risk-card">
+          <span class="risk-num">01</span>
+          <h3>原因が分からない</h3>
+          <p>「なんか疲れる」「なんかしんどい」が続いても、トリガーが見えないと改善の打ち手がありません。ストレスはあるのに言語化できず、発散できないから蓄積していきます。</p>
+        </article>
+        <article class="risk-card">
+          <span class="risk-num">02</span>
+          <h3>吐き出せない</h3>
+          <p>日記は重い。人に話すほどでもない。結果、感情だけが体の中に残り続けます。「残らない」か「溜まる」か——どちらかになります。</p>
+        </article>
+        <article class="risk-card">
+          <span class="risk-num">03</span>
+          <h3>選択が変わらない</h3>
+          <p>どんな時間や関係で消耗するのか分からないまま、同じ毎日をなぞり続けてしまいます。気づきがなければ行動は変わりません。</p>
+        </article>
+      </div>
+
+      <div class="pain-banner">
+        <div>
+          <h3>一番やばいポイントは、<br>「自分の感情が見えてない状態」＝コントロール不能</h3>
+          <p>ここが優先度が高い悩みです。感情が見えないから、改善できない。改善できないから、毎日がしんどいまま続いていきます。</p>
+        </div>
+        <div class="pain-items">
+          <div class="pain-item">
+            <span class="icon">😶‍🌫️</span>
+            <span>ストレスはあるのに言語化できない</span>
+          </div>
+          <div class="pain-item">
+            <span class="icon">🔄</span>
+            <span>発散できないから蓄積するだけ</span>
+          </div>
+          <div class="pain-item">
+            <span class="icon">❓</span>
+            <span>「何が原因か分からない」から改善できない</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── VALUE ─── -->
+  <section id="value">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Value</div>
+        <h2 class="section-h2">売りは機能数ではなく、<br>感情の扱い方が変わること。</h2>
+        <p class="section-lead">"吐き出す"と"残す"を同時にできる体験。言語化しなくても感情を出せる設計と、写真と一緒に自然に記録される仕組みがあります。</p>
+      </div>
+
+      <div class="value-grid">
+        <article class="card value-card">
+          <div class="value-number">01</div>
+          <h3>その場で軽くなる</h3>
+          <p>「うわ、ムカつく」→ 絵文字ポンで終わり。溜めない、引きずらない。吐き出すハードルを極端に下げて、溜め込む前に外へ出せます。</p>
+        </article>
+        <article class="card value-card">
+          <div class="value-number">02</div>
+          <h3>自分の感情が見える</h3>
+          <p>あとから写真の並びを見返すと、嬉しい瞬間も、無理していた瞬間も、思っていた以上にくっきり残ります。無意識が見えてくる。</p>
+        </article>
+        <article class="card value-card">
+          <div class="value-number">03</div>
+          <h3>行動が変わる</h3>
+          <p>気づきが増えると、会う人、使う時間、休み方が変わります。"自分で選んでいる感覚"が戻ってきます。</p>
+        </article>
+      </div>
+
+      <!-- emo/creative strip -->
+      <div class="emo-strip">
+        <div>
+          <div class="emo-badge">✨ emo / creative</div>
+          <h3>感情を「残す」だけじゃない。<br>「表現する」使い方もある。</h3>
+          <p>ただの記録じゃない。ちょっと楽しい。ライト層の入口として、感情を作品のように残せる体験が続けやすさを作ります。</p>
+          <div class="emo-features">
+            <div class="emo-feature">写真に絵文字を重ねる</div>
+            <div class="emo-feature">気分を作品として残す</div>
+            <div class="emo-feature">そのままSNSにシェアできる</div>
+          </div>
+        </div>
+        <div class="emo-visual">
+          <div class="emo-sample">
+            <span class="sample-emoji">😮‍💨</span>
+            <span>帰り道、なんか疲れた日</span>
+          </div>
+          <div class="emo-sample">
+            <span class="sample-emoji">✨</span>
+            <span>あのカフェ、また行きたいな</span>
+          </div>
+          <div class="emo-sample">
+            <span class="sample-emoji">😤</span>
+            <span>あの会議、やっぱり無理だった</span>
+          </div>
+          <div class="emo-sample">
+            <span class="sample-emoji">🌸</span>
+            <span>今日は案外いい日だった</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── BRAND SCRIPT / 3 STAGES ─── -->
+  <section class="brandscript-section" id="brand">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Brand Script</div>
+        <h2 class="section-h2">あなたの3段階の変化</h2>
+        <p class="section-lead">EmoSnapが目指しているのは、感情を溜め込まずに吐き出せるようになり、あとで見返して「これ、無理してたな」と自然に気づける——その状態です。</p>
+      </div>
+
+      <div class="stages">
+        <div class="stage">
+          <div class="stage-num"><div class="stage-circle">1</div></div>
+          <div class="stage-content">
+            <h3>第1段階：撮って、のせるだけ</h3>
+            <p>写真を撮って、感じたままに絵文字や一言をのせるだけ。考えなくていい。整えなくていい。</p>
+            <div class="stage-action">"今の感情"を吐き出して、そのまま残す</div>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-num"><div class="stage-circle">2</div></div>
+          <div class="stage-content">
+            <h3>第2段階：見返すと、気づく</h3>
+            <p>何気なく残した記録を見返すと——</p>
+            <div class="stage-quotes">
+              <div class="stage-quote">「あ、自分こういうとき嬉しいんだ」</div>
+              <div class="stage-quote">「この時ちょっと無理してたな」</div>
+            </div>
+            <div class="stage-action">感情のクセや流れに気づく</div>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-num"><div class="stage-circle">3</div></div>
+          <div class="stage-content">
+            <h3>第3段階：日常の選択が変わる</h3>
+            <p>気づきが増えると、無理しすぎなくなる。嫌なものを避けられる。好きな時間を増やせる。</p>
+            <div class="stage-action">"自分で選んでる感覚"が戻ってくる</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="manifesto">
+        <div class="m-left">
+          <h3>感情を溜め込まずに吐き出せるようになり、あとで見返して「これ、無理してたな」と自然に気づける。</h3>
+          <p>問題はシンプルです。感情はその瞬間にしか存在しないのに、それを"簡単に吐き出して、そのまま残す手段"がない。その結果、写真は残るのに、気持ちは残らない。EmoSnapは、写真を撮る行為を感情の記録に変えます。</p>
+        </div>
+        <div class="m-right">
+          <h4>こんな変化を狙っています</h4>
+          <div class="manifesto-points">
+            <div class="manifesto-point">
+              <span class="mp-icon">🔍</span>
+              <span>「なんとなくしんどい」の正体が分かる</span>
+            </div>
+            <div class="manifesto-point">
+              <span class="mp-icon">👥</span>
+              <span>無理しやすい場面や人間関係が見える</span>
+            </div>
+            <div class="manifesto-point">
+              <span class="mp-icon">⏰</span>
+              <span>好きな時間を増やす判断がしやすくなる</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── GUIDE ─── -->
+  <section id="guide">
+    <div class="wrap">
+      <div class="guide-layout">
+        <div class="guide-image">
+          <img src="assets/lp-guide.jpeg" alt="EmoSnap story"
+            onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-size:4rem\'>📷</span>'">
+        </div>
+        <div>
+          <div class="section-kicker">Guide</div>
+          <h2 class="section-h2">続かない記録と、言語化できないモヤモヤ。<br>私たちも困っていました。</h2>
+          <p class="section-lead">だから EmoSnap は、ちゃんと書ける人のためではなく、<strong>書けない日でも残せる</strong>ように設計しています。重い自己管理ツールにはしていません。</p>
+          <ul class="checklist">
+            <li>考えなくていい入力導線</li>
+            <li>感情を作品っぽく残せる楽しさ</li>
+            <li>あとから振り返るための軽い習慣化</li>
+            <li>日記が続かなかった人でも試しやすい軽さ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW ─── -->
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Plan</div>
+        <h2 class="section-h2">使い方は、3ステップだけ。</h2>
+      </div>
+      <div class="steps-grid">
+        <article class="card step-card">
+          <div class="step-num">01</div>
+          <h3>撮る</h3>
+          <p>その日の一枚を撮る。特別な場面じゃなくていい。帰り道でも、机の上でも十分です。</p>
+        </article>
+        <article class="card step-card">
+          <div class="step-num">02</div>
+          <h3>のせる</h3>
+          <p>絵文字や一言を重ねて、感じたままを置く。うまく書かなくていいのが前提です。</p>
+        </article>
+        <article class="card step-card">
+          <div class="step-num">03</div>
+          <h3>見返す</h3>
+          <p>何日か後に見返して「自分ってこういうとき崩れるんだ」に気づく。ここが一番効きます。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section id="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Voice</div>
+        <h2 class="section-h2">β参加者の声</h2>
+      </div>
+      <div class="testi-grid">
+        <article class="testi-card">
+          <blockquote>日記は続かなかったけど、これは写真のついでだから続いた。見返すと、落ちる日が意外と似ていて驚いた</blockquote>
+          <div class="testi-meta">30代・会社員</div>
+          <a class="testi-link" href="https://testflight.apple.com/join/brPbWXyK">自分でも無料で試してみる</a>
+        </article>
+        <article class="testi-card continue-card">
+          <h3>続けやすさの3つの理由</h3>
+          <p>初期の継続率目標80%。続かなければ意味がないので、ここを最重要指標にしています。</p>
+          <ul class="continue-points">
+            <li>「ちゃんと書かなくていい」</li>
+            <li>「かわいく盛れる」</li>
+            <li>「あとで意味が出てくる」</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRICE ─── -->
+  <section class="price-section" id="price">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Price</div>
+        <h2 class="section-h2">無料で始めて、必要になったら買う。<br>それで十分です。</h2>
+      </div>
+      <div class="price-layout">
+        <article class="price-dark">
+          <div class="kicker">Premium</div>
+          <h2>"なんとなく残す"から、<br>"ちゃんと残す"へ</h2>
+          <p>EmoSnapは無料でも使えます。でも使っていると気づきます。「これ、ちゃんと残したくなるな」——そのための買い切りプランを用意しています。</p>
+          <div class="price-tag">
+            <span class="label">一度きり</span>
+            <span class="amount">¥700</span>
+          </div>
+          <p class="price-note">サブスクではありません。一度購入すれば、ずっと使えます。</p>
+          <a class="price-cta" href="https://testflight.apple.com/join/brPbWXyK">無料で試す</a>
+          <p class="price-cta-note">現在はβ版（TestFlight）です。</p>
+        </article>
+        <div>
+          <article class="price-features">
+            <h3>Premium でできること</h3>
+            <ul class="feature-list">
+              <li>
+                <div class="feat-icon">🎨</div>
+                <div class="feat-text">
+                  <strong>絵文字・フォントをフル解放</strong>
+                  <span>表現の幅が一気に広がります</span>
+                </div>
+              </li>
+              <li>
+                <div class="feat-icon">💾</div>
+                <div class="feat-text">
+                  <strong>透かしなしで保存・シェア</strong>
+                  <span>ちゃんと残る。SNSにもそのまま</span>
+                </div>
+              </li>
+              <li>
+                <div class="feat-icon">📱</div>
+                <div class="feat-text">
+                  <strong>複数端末で購入の復元に対応</strong>
+                  <span>機種変更しても安心</span>
+                </div>
+              </li>
+              <li>
+                <div class="feat-icon">🔒</div>
+                <div class="feat-text">
+                  <strong>端末中心でデータを保管</strong>
+                  <span>気持ちの記録は自分の手元に</span>
+                </div>
+              </li>
+            </ul>
+          </article>
+          <div class="free-note">
+            無料でも使い勝手と記録習慣の相性を確かめるには十分です。気に入ったらPremiumへ。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ─── -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">FAQ</div>
+        <h2 class="section-h2">購入前に気になるところだけ整理します。</h2>
+      </div>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <h3>データはどこに保存されますか？</h3>
+          <p>現時点では、感情の記録は端末中心で扱う前提です。プライバシーに配慮しつつ、あとから見返しやすい体験を優先しています。</p>
+        </article>
+        <article class="faq-item">
+          <h3>無料でどこまで試せますか？</h3>
+          <p>まずは使い勝手と記録習慣の相性を確かめるには十分です。気に入ったらPremiumで表現の幅と保存体験を広げられます。</p>
+        </article>
+        <article class="faq-item">
+          <h3>どんな人に向いていますか？</h3>
+          <p>文章を書くのがしんどい人、感情を人前で出しづらい人、写真は撮るけど気持ちの振り返りが残っていない人に向いています。</p>
+        </article>
+        <article class="faq-item">
+          <h3>今すぐ始めるべきですか？</h3>
+          <p>しんどさの原因がぼやけているなら、始める理由は十分あります。1週間だけでも、見えてくるものがあります。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LEAD GEN / FINAL CTA ─── -->
+  <section class="leadgen-section" id="start">
+    <div class="wrap">
+      <div class="leadgen-grid">
+        <article class="leadgen-main">
+          <h2>1週間で変わる体験を。</h2>
+          <p>最初に必要なのは資料請求ではなく、実際に1枚撮ってみることです。感情が残る感覚は、説明より体験の方が早い。まずは写真を1枚、撮ってみてください。</p>
+          <a class="leadgen-btn" href="https://testflight.apple.com/join/brPbWXyK">今すぐ無料で体験する</a>
+          <span class="leadgen-btn-note">β版 · TestFlight · 無料</span>
+        </article>
+        <article class="target-card">
+          <h3>こんな人に刺さります</h3>
+          <ul class="target-list">
+            <li>日記アプリは続かなかった</li>
+            <li>写真フォルダはあるのに気持ちの記録がない</li>
+            <li>自分のストレスの原因を掴みたい</li>
+            <li>内省をもっと軽く始めたい</li>
+            <li>感情を人前で出しづらい</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
 </main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <strong>EmoSnap</strong>
+      <p>写真と感情を一緒に残して、あとから自分を理解し直すための iOS アプリ。</p>
+    </div>
+    <nav class="footer-links">
+      <a href="#faq">FAQ</a>
+      <a href="#price">価格</a>
+      <a href="#value">価値</a>
+      <a href="https://testflight.apple.com/join/brPbWXyK">無料体験</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>
