@@ -62,6 +62,9 @@
 
     .wrap {
       width: 100%;
+      /* Prefer dynamic viewport width when available to match visual viewport on pinch-zoom (iOS Safari)
+         Fallback to normal 100% when 100dvw is unsupported. */
+      width: min(calc(100dvw - 40px), var(--max));
       max-width: var(--max);
       padding: 0 20px;
       margin: 0 auto;
@@ -700,7 +703,7 @@
       .pain-banner { padding: 32px; }
     }
     @media (max-width: 640px) {
-      .wrap { padding: 0 12px; }
+      .wrap { padding: 0 12px; width: 100%; width: calc(100dvw - 24px); }
       section { padding: 56px 0; }
       .risk-grid, .value-grid, .steps-grid, .faq-grid,
       .hero-stats { grid-template-columns: 1fr; }
