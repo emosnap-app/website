@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" itemscope itemtype="http://schema.org/WebPage" translate="no">
 <head>
-  <meta charset="utf-8">" />
+  <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5">
   <title>EmoSnap | 写真は残るのに、気持ちは消える。</title>
@@ -485,7 +485,7 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 4rem;
     }
-    .guide-image img { width: 100%; height: 100%; object-fit: cover; }
+    .guide-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .checklist { display: grid; gap: 12px; margin-top: 24px; list-style: none; }
     .checklist li {
       display: flex; align-items: flex-start; gap: 12px;
@@ -713,6 +713,9 @@
       .nav-links { display: none; }
       .leadgen-main { padding: 32px 28px; }
       .cta-main { width: 100%; }
+      /* guide image: reduce min-height and ensure image doesn't overflow visual viewport */
+      .guide-image { min-height: 180px; aspect-ratio: auto; padding: 0; }
+      .guide-image img { width: 100%; height: auto; max-width: 100%; object-fit: cover; }
     }
   </style>
 </head>
