@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5">
   <title>EmoSnap | 写真は残るのに、気持ちは消える。</title>
   <meta name="description" content="写真にそのときの気持ちを直感的に残し、あとで振り返って気づきを得るカメラアプリ。まずは無料で体験し、必要なら買い切り¥700でちゃんと残す。" />
   <meta name="google" content="notranslate" />
@@ -40,6 +40,7 @@
 
     body {
       font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(15px, 4vw, 17px);
       background: var(--bg);
       color: var(--ink);
       line-height: 1.75;
@@ -146,7 +147,7 @@
     }
 
     .hero-lead {
-      font-size: 1.05rem;
+      font-size: clamp(1rem, 4.2vw, 1.15rem);
       color: var(--ink-mid);
       line-height: 1.8;
       margin-bottom: 32px;
@@ -187,7 +188,8 @@
     }
     .cta-main:hover { transform: translateY(-2px); box-shadow: 0 20px 48px rgba(232,89,58,0.36); }
     .cta-note {
-      font-size: 0.82rem; color: var(--ink-soft); text-align: center;
+      font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+      color: var(--ink-soft); text-align: center;
     }
 
     /* Right column */
@@ -260,7 +262,7 @@
       font-family: "Fraunces", serif; font-size: 2rem;
       color: var(--brand); line-height: 1; display: block; margin-bottom: 4px;
     }
-    .hero-stat span { font-size: 0.8rem; color: var(--ink-soft); }
+    .hero-stat span { font-size: clamp(0.85rem, 3.5vw, 0.95rem); color: var(--ink-soft); }
 
     /* ─── SECTIONS SHARED ─── */
     section { padding: 80px 0; position: relative; z-index: 1; }
@@ -275,7 +277,8 @@
       margin-bottom: 16px;
     }
     .section-lead {
-      font-size: 1rem; color: var(--ink-mid);
+      font-size: clamp(1rem, 4.2vw, 1.15rem);
+      color: var(--ink-mid);
       max-width: 46rem; line-height: 1.8;
     }
     .section-head { margin-bottom: 48px; }
@@ -289,7 +292,7 @@
       box-shadow: var(--shadow-sm);
     }
     .card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
-    .card p { color: var(--ink-mid); font-size: 0.95rem; line-height: 1.8; }
+    .card p { color: var(--ink-mid); font-size: clamp(1rem, 4.2vw, 1.15rem); line-height: 1.8; }
 
     /* ─── RISK ─── */
     .risk-section { background: linear-gradient(180deg, var(--bg) 0%, #EDE5D8 100%); }
@@ -523,7 +526,7 @@
     }
     .testi-card blockquote::before { content: "「"; color: var(--brand); }
     .testi-card blockquote::after  { content: "」"; color: var(--brand); }
-    .testi-meta { font-size: 0.82rem; color: var(--ink-soft); }
+    .testi-meta { font-size: clamp(0.85rem, 3.5vw, 0.95rem); color: var(--ink-soft); }
     .testi-link {
       display: inline-flex; align-items: center; gap: 6px;
       margin-top: 16px; color: var(--teal); font-weight: 700; font-size: 0.88rem;
@@ -568,7 +571,7 @@
       font-family: "Fraunces", serif; font-size: 4.5rem;
       font-weight: 700; color: #fff; line-height: 1;
     }
-    .price-note { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-bottom: 28px; }
+    .price-note { font-size: clamp(0.85rem, 3.5vw, 0.95rem); color: rgba(255,255,255,0.45); margin-bottom: 28px; }
     .price-cta {
       display: flex; align-items: center; justify-content: center; gap: 10px;
       background: linear-gradient(135deg, var(--brand), var(--brand-dark));
