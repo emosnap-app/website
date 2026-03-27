@@ -718,6 +718,67 @@
       .guide-image img { width: 100%; height: auto; max-width: 100%; object-fit: cover; }
     }
   </style>
+  <style>
+  @media (max-width: 640px) {
+
+    /* フォント調整 */
+    body {
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .hero-h1 {
+      font-size: 2.2rem;
+      line-height: 1.2;
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+    }
+
+    .section-h2 {
+      font-size: 1.6rem;
+    }
+
+    .card p,
+    .section-lead,
+    .faq-item p {
+      font-size: 0.95rem;
+    }
+
+    /* 情報削減（スマホでは隠す） */
+    .hero-stats {
+      display: none;
+    }
+
+    .persona-box {
+      display: none;
+    }
+
+    .floating-cards {
+      display: none;
+    }
+
+    .emo-strip {
+      display: none;
+    }
+
+    /* CTA強化 */
+    .cta-main {
+      font-size: 1.1rem;
+      padding: 16px;
+    }
+
+    /* 余白調整 */
+    .hero {
+      padding: 40px 0 24px;
+    }
+
+    section {
+      padding: 48px 0;
+    }
+  }
+  </style>
 </head>
 <body>
 
