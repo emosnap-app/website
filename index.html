@@ -202,6 +202,45 @@
       font-size: clamp(0.85rem, 3.5vw, 0.95rem);
       color: var(--ink-soft); text-align: center;
     }
+    .tf-guide {
+      max-width: 340px;
+      margin: 10px auto 0;
+      text-align: left;
+    }
+    .tf-guide summary {
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+    .tf-guide summary::-webkit-details-marker { display: none; }
+    .tf-guide summary::after {
+      content: "▾";
+      font-size: 0.75rem;
+      transition: transform 0.2s;
+    }
+    .tf-guide[open] summary::after { transform: rotate(-180deg); }
+    .tf-steps {
+      margin: 8px 0 0 1.4em;
+      padding: 0;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+    .tf-steps li { margin-bottom: 2px; }
+    .tf-caution {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: #b07d3a;
+      text-align: center;
+      background: rgba(176,125,58,0.08);
+      border-radius: 8px;
+      padding: 6px 12px;
+    }
 
     /* Right column */
     .hero-right { position: relative; }
@@ -910,6 +949,15 @@
           <div class="cta-stack">
             <a class="cta-main" href="https://testflight.apple.com/join/brPbWXyK">無料で先行体験する</a>
             <span class="cta-note">TestFlight 経由ですぐ使えます。β版では Creative Kit の全機能を無料で体験できます。</span>
+            <details class="tf-guide">
+              <summary>📲 TestFlight の使い方</summary>
+              <ol class="tf-steps">
+                <li>上のボタンをタップ → TestFlight をインストール</li>
+                <li>インストール後、<strong>もう一度このページのボタンをタップ</strong></li>
+                <li>EmoSnap のベータ版が起動します</li>
+              </ol>
+              <p class="tf-caution">⚠️ TestFlight を直接開くと招待コードを求められます。必ずボタンから開いてください。</p>
+            </details>
             <div class="cta-trust">
               <span>📱 データは端末内に保管</span>
               <span class="sep">·</span>
