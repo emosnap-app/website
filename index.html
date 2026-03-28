@@ -680,6 +680,30 @@
     .footer-links a { font-size: 0.88rem; color: var(--ink-soft); transition: color 0.2s; }
     .footer-links a:hover { color: var(--ink); }
 
+    /* ─── TRUST SIGNAL ─── */
+    .cta-trust {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; flex-wrap: wrap;
+      font-size: 0.8rem; color: var(--ink-soft);
+      margin-top: 2px;
+    }
+    .cta-trust span { display: flex; align-items: center; gap: 4px; }
+    .cta-trust .sep { color: var(--line); }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    .js-ready .anim-up {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .js-ready .anim-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .js-ready .anim-up { opacity: 1; transform: none; transition: none; }
+    }
+
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -835,8 +859,15 @@
           </div>
 
           <div class="cta-stack">
-            <a class="cta-main" href="https://testflight.apple.com/join/brPbWXyK">ベータ版を無料で試す</a>
-            <span class="cta-note">β版は TestFlight で公開中。まずは1週間だけ試してください。<br>気に入ったらアプリ内で¥700（買い切り）。</span>
+            <a class="cta-main" href="https://testflight.apple.com/join/brPbWXyK">無料で試す（β版）</a>
+            <span class="cta-note">TestFlight で公開中。まずは1週間だけ試してください。<br>気に入ったらアプリ内で¥700（買い切り）。</span>
+            <div class="cta-trust">
+              <span>📱 データは端末内に保管</span>
+              <span class="sep">·</span>
+              <span>🚫 サブスクなし</span>
+              <span class="sep">·</span>
+              <span>🔒 プライバシー重視</span>
+            </div>
           </div>
         </div>
 
@@ -872,8 +903,8 @@
               <span>変化が見え始める</span>
             </div>
             <div class="hero-stat">
-              <span class="num">80%</span>
-              <span>継続率目標</span>
+              <span class="num">3秒〜</span>
+              <span>最短の記録時間</span>
             </div>
           </div>
         </div>
@@ -1153,7 +1184,7 @@
         </article>
         <article class="testi-card continue-card">
           <h3>続けやすさの3つの理由</h3>
-          <p>初期の継続率目標80%。続かなければ意味がないので、ここを最重要指標にしています。</p>
+          <p>続かなければ意味がない。だから「続けやすさ」を最重要指標にしています。</p>
           <ul class="continue-points">
             <li>「ちゃんと書かなくていい」</li>
             <li>「かわいく盛れる」</li>
@@ -1219,7 +1250,7 @@
             </ul>
           </article>
           <div class="free-note">
-            無料でも使い勝手と記録習慣の相性を確かめるには十分です。気に入ったらPremiumへ。
+            <div><strong>無料版でできること：</strong>絵文字での感情記録・写真への一言メモ・過去の振り返り。<br>Premiumで絵文字/フォント全解放・透かしなし保存が追加されます。</div>
           </div>
         </div>
       </div>
@@ -1240,7 +1271,7 @@
         </article>
         <article class="faq-item">
           <h3>無料でどこまで試せますか？</h3>
-          <p>まずは使い勝手と記録習慣の相性を確かめるには十分です。気に入ったらPremiumで表現の幅と保存体験を広げられます。</p>
+          <p>絵文字での感情記録・写真への一言メモ・過去の振り返りはすべて無料で体験できます。Premiumでは絵文字/フォント全解放と透かしなし保存が追加されます。</p>
         </article>
         <article class="faq-item">
           <h3>どんな人に向いていますか？</h3>
@@ -1298,5 +1329,44 @@
   </div>
 </footer>
 
+<script>
+  /* ── GA4 ──────────────────────────────────────────────
+     GA4 を設定するには以下のコメントを解除し、
+     G-XXXXXXXXXX を実際の Measurement ID に置き換えてください。
+
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+  j.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'+dl;
+  f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','G-XXXXXXXXXX');
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-XXXXXXXXXX');
+
+  ─────────────────────────────────────────────────────── */
+
+  /* ── Scroll animations ──────────────────────────────── */
+  (function () {
+    document.documentElement.classList.add('js-ready');
+
+    var targets = document.querySelectorAll(
+      '.risk-card, .value-card, .step-card, .faq-item, ' +
+      '.testi-card, .stage-content, .manifesto-point, ' +
+      '.pain-item, .emo-sample'
+    );
+    targets.forEach(function (el) { el.classList.add('anim-up'); });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 </body>
 </html>
