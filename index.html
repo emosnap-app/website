@@ -665,6 +665,44 @@
     }
     .target-list li::before { content: "✓"; color: var(--brand); font-weight: 900; flex-shrink: 0; }
 
+    /* ─── FEEDBACK ─── */
+    .feedback-section {
+      background: linear-gradient(180deg, var(--bg), #EDE5D8);
+      padding: 64px 0;
+    }
+    .feedback-banner {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--r-xl); padding: 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 32px; flex-wrap: wrap;
+      box-shadow: var(--shadow-sm);
+    }
+    .feedback-banner .fb-text {}
+    .feedback-banner .fb-kicker {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 10px;
+    }
+    .feedback-banner h3 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      line-height: 1.2; margin-bottom: 10px;
+    }
+    .feedback-banner p { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.7; }
+    .feedback-btn {
+      display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0;
+      background: var(--teal); color: #fff;
+      font-weight: 700; font-size: 1rem;
+      padding: 16px 28px; border-radius: var(--r-md);
+      box-shadow: 0 12px 32px rgba(13,107,110,0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feedback-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(13,107,110,0.32); }
+    .feedback-btn::after { content: "→"; }
+    @media (max-width: 640px) {
+      .feedback-banner { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+      .feedback-btn { width: 100%; justify-content: center; }
+    }
+
     /* ─── FOOTER ─── */
     .footer {
       padding: 48px 0 64px;
@@ -1305,6 +1343,20 @@
             <li>感情を人前で出しづらい</li>
           </ul>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEEDBACK ─── -->
+  <section class="feedback-section">
+    <div class="wrap">
+      <div class="feedback-banner anim-up">
+        <div class="fb-text">
+          <div class="fb-kicker">Feedback</div>
+          <h3>使ってみた感想を聞かせてください。</h3>
+          <p>良かった点も、使いにくかった点も。あなたの声がEmoSnapを育てます。</p>
+        </div>
+        <a class="feedback-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSevQVmiCgkgrD8rkuVnfsAQeZ_CuY2P-YY8A0GezRpJRseTxA/viewform?usp=publish-editor" target="_blank" rel="noopener">感想を送る</a>
       </div>
     </div>
   </section>
