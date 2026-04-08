@@ -563,38 +563,20 @@
     .step-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
     .step-card p { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.8; }
 
-    /* ─── TESTIMONIALS ─── */
-    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .testi-card {
+    /* ─── SCENES ─── */
+    .scene-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .scene-grid { grid-template-columns: 1fr; } }
+    .scene-card {
       background: var(--paper); border: 1px solid var(--line);
-      border-radius: var(--r-xl); padding: 32px; box-shadow: var(--shadow-sm);
+      border-radius: var(--r-xl); padding: 28px 28px 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column; gap: 10px;
     }
-    .testi-card blockquote {
-      font-size: 1.05rem; color: var(--ink);
-      line-height: 1.8; margin-bottom: 16px;
-      font-style: italic;
-    }
-    .testi-card blockquote::before { content: "「"; color: var(--brand); }
-    .testi-card blockquote::after  { content: "」"; color: var(--brand); }
-    .testi-meta { font-size: clamp(0.85rem, 3.5vw, 0.95rem); color: var(--ink-soft); }
-    .testi-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 16px; color: var(--teal); font-weight: 700; font-size: 0.88rem;
-      transition: gap 0.2s;
-    }
-    .testi-link:hover { gap: 10px; }
-    .testi-link::after { content: "→"; }
-    .continue-card {
-      background: linear-gradient(160deg, var(--teal-soft), rgba(255,255,255,0.9));
-      border-color: rgba(13,107,110,0.12);
-    }
-    .continue-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
-    .continue-points { display: grid; gap: 10px; list-style: none; margin-top: 16px; }
-    .continue-points li {
-      font-size: 0.9rem; color: var(--ink-mid);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .continue-points li::before { content: "→"; color: var(--teal); font-weight: 700; }
+    .scene-emoji { font-size: 2rem; line-height: 1; }
+    .scene-card h3 { font-size: 1.0rem; font-weight: 700; color: var(--ink); margin: 0; }
+    .scene-card p { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.75; margin: 0; }
+    .scene-card.positive { background: linear-gradient(160deg, #F6F2EC, var(--paper)); }
+    .scene-card.negative { background: linear-gradient(160deg, #F0F7F7, var(--paper)); }
 
     /* ─── PRICE ─── */
     .price-section { background: linear-gradient(180deg, #EDE5D8, var(--bg)); }
@@ -909,7 +891,7 @@
     <nav class="nav-links">
       <a href="#value">価値</a>
       <a href="#how">使い方</a>
-      <a href="#price">価格</a>
+      <a href="#faq">FAQ</a>
       <a class="nav-cta" href="https://testflight.apple.com/join/brPbWXyK">無料で試す</a>
     </nav>
   </div>
@@ -949,7 +931,7 @@
 
           <div class="cta-stack">
             <a class="cta-main" href="https://testflight.apple.com/join/brPbWXyK">無料で先行体験する</a>
-            <span class="cta-note">TestFlight 経由ですぐ使えます。β版では Creative Kit の全機能を無料で体験できます。</span>
+            <span class="cta-note">TestFlight 経由ですぐ使えます。β版として無料で体験できます。</span>
             <details class="tf-guide">
               <summary>📲 TestFlight の使い方</summary>
               <ol class="tf-steps">
@@ -962,7 +944,7 @@
             <div class="cta-trust">
               <span>📱 データは端末内に保管</span>
               <span class="sep">·</span>
-              <span>💳 β版は Creative Kit 全機能無料</span>
+              <span>💳 β版として無料で体験できます</span>
               <span class="sep">·</span>
               <span>🔒 プライバシー重視</span>
             </div>
@@ -986,8 +968,8 @@
                 <span>気合いがいらない</span>
               </div>
               <div class="float-card">
-                <strong>Creative Kit</strong>
-                <span>β版は無料</span>
+                <strong>写真に気持ちを残す</strong>
+                <span>10秒で記録できる</span>
               </div>
             </div>
           </div>
@@ -1017,35 +999,35 @@
       <div class="section-head">
         <div class="section-kicker">Risk</div>
         <h2 class="section-h2">感情が見えないまま、<br>生き続けることになります。</h2>
-        <p class="section-lead">写真だけ増えて、感情だけ消えると、毎日のしんどさは原因不明のまま残ります。見えないものは調整できません。</p>
+        <p class="section-lead">感情は記録しなければ消えます。原因不明のしんどさが続くのは、見えていないからです。</p>
       </div>
 
       <div class="value-grid">
 
   <article class="card value-card">
     <div class="value-number">01</div>
-    <h3>その場で吐き出せる</h3>
+    <h3>感情が蓄積していく</h3>
     <p>
-      「うわ、ムカつく」→ 絵文字ポンで終わり。<br>
-      溜めない、引きずらない。まずは軽く外に出せる設計です。
+      吐き出す場所がないと、小さなモヤモヤが少しずつ積み重なります。<br>
+      気づいたときには、原因が分からなくなっています。
     </p>
   </article>
 
   <article class="card value-card">
     <div class="value-number">02</div>
-    <h3>意味まで残る</h3>
+    <h3>「なぜしんどいか」が分からない</h3>
     <p>
-      絵文字だけでもいい。でも一言メモを残すと、<br>
-      「なぜそう感じたか」まであとから分かります。
+      感情を記録していないと、パターンが見えない。<br>
+      原因が分からないから、改善のしようがない。
     </p>
   </article>
 
   <article class="card value-card">
     <div class="value-number">03</div>
-    <h3>あとから気づける</h3>
+    <h3>毎日が変わらないまま続く</h3>
     <p>
-      写真と感情を一緒に見返すことで、<br>
-      無理していた瞬間や、好きだった時間に自然と気づけます。
+      気づきがなければ、選択は変わらない。<br>
+      同じしんどさを繰り返す日常が、そのまま続きます。
     </p>
   </article>
 
@@ -1081,7 +1063,7 @@
       <div class="section-head">
         <div class="section-kicker">Value</div>
         <h2 class="section-h2">売りは機能数ではなく、<br>感情の扱い方が変わること。</h2>
-        <p class="section-lead">"吐き出す"と"残す"を同時にできる体験。言語化しなくても感情を出せる設計と、写真と一緒に自然に記録される仕組みがあります。</p>
+        <p class="section-lead">言語化しなくていい。写真を撮って、絵文字をのせるだけ。それで「吐き出す」と「残す」が同時に完了します。</p>
       </div>
 
       <div class="value-grid">
@@ -1102,12 +1084,12 @@
         </article>
       </div>
 
-      <!-- emo/creative strip -->
+      <!-- emo strip -->
       <div class="emo-strip">
         <div>
-          <div class="emo-badge">✨ emo / creative</div>
-          <h3>感情を「残す」だけじゃない。<br>「表現する」使い方もある。</h3>
-          <p>ただの記録じゃない。ちょっと楽しい。ライト層の入口として、感情を作品のように残せる体験が続けやすさを作ります。</p>
+          <div class="emo-badge">✨ emo</div>
+          <h3>写真に気持ちを重ねる。<br>それだけでいい。</h3>
+          <p>ただの記録じゃない。ちょっと楽しい。感情を写真に重ねて残す体験が、続けやすさを作ります。</p>
           <div class="emo-features">
             <div class="emo-feature">写真に絵文字を重ねる</div>
             <div class="emo-feature">気分を作品として残す</div>
@@ -1267,96 +1249,35 @@
     </div>
   </section>
 
-  <!-- ─── TESTIMONIALS ─── -->
-  <section id="testimonials">
+  <!-- ─── SCENES ─── -->
+  <section id="scenes">
     <div class="wrap">
       <div class="section-head">
-        <div class="section-kicker">Voice</div>
-        <h2 class="section-h2">β参加者の声</h2>
+        <div class="section-kicker">Scene</div>
+        <h2 class="section-h2">ネガティブだけじゃない。<br>うれしい瞬間も、ちゃんと残る。</h2>
+        <p class="section-lead">感情は「しんどいとき」だけに動くわけじゃない。大切な記憶も、ちょっとした幸せも、写真と一緒に残しておける。</p>
       </div>
-      <div class="testi-grid">
-        <article class="testi-card">
-          <blockquote>日記は続かなかったけど、これは写真のついでだから続いた。見返すと、落ちる日が意外と似ていて驚いた</blockquote>
-          <div class="testi-meta">30代 · 日記習慣なし</div>
-          <a class="testi-link" href="https://testflight.apple.com/join/brPbWXyK">自分でも無料で試してみる</a>
+      <div class="scene-grid">
+        <article class="scene-card positive">
+          <div class="scene-emoji">😊</div>
+          <h3>うれしかった瞬間を残しておきたい</h3>
+          <p>友達とのごはん、ひとりでうまくいった日。「この気持ち忘れたくない」をそのまま保存できる。</p>
         </article>
-        <article class="testi-card">
-          <blockquote>絵文字だけでもいいのが助かった。テキスト打つのが面倒な日でも続けられた。</blockquote>
-          <div class="testi-meta">20代 · 日記はたまに</div>
-          <a class="testi-link" href="https://testflight.apple.com/join/brPbWXyK">自分でも無料で試してみる</a>
+        <article class="scene-card positive">
+          <div class="scene-emoji">🥰</div>
+          <h3>大切な思い出に感情を添えたい</h3>
+          <p>写真は残るのに、そのとき何を感じたかは消えていく。絵文字ひとつで、感情も一緒に記録できる。</p>
         </article>
-        <article class="testi-card continue-card">
-          <h3>続けやすさの3つの理由</h3>
-          <p>続かなければ意味がない。だから「続けやすさ」を最重要指標にしています。</p>
-          <ul class="continue-points">
-            <li>「ちゃんと書かなくていい」</li>
-            <li>「かわいく盛れる」</li>
-            <li>「あとで意味が出てくる」</li>
-          </ul>
+        <article class="scene-card negative">
+          <div class="scene-emoji">😤</div>
+          <h3>イライラをその場で吐き出したい</h3>
+          <p>書くほどでもない怒り・モヤモヤ。絵文字を選ぶだけで、頭の外に出せる。</p>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── PRICE ─── -->
-  <section class="price-section" id="price">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-kicker">Price</div>
-        <h2 class="section-h2">無料で始めて、必要になったら買う。<br>それで十分です。</h2>
-      </div>
-      <div class="price-layout">
-        <article class="price-dark">
-          <div class="kicker">有料プラン</div>
-          <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:12px;letter-spacing:0.03em;">Creative Kit</div>
-          <h2>"なんとなく残す"から、<br>"ちゃんと形にする"へ</h2>
-          <p>EmoSnapは無料でも使えます。でも使っていると気づきます。「これ、もっと自分らしく残したくなるな」と。<br>そのための買い切りプランです。</p>
-          <div class="price-tag">
-            <span class="label">一度きり</span>
-            <span class="amount">¥700</span>
-          </div>
-          <p class="price-note">今の機能を使い続けるための追加費用はかかりません。一度の購入で、表現の幅がすべて解放されます。</p>
-          <a class="price-cta" href="https://testflight.apple.com/join/brPbWXyK">無料で試す</a>
-          <p class="price-cta-note">現在はβ版（TestFlight）です。</p>
+        <article class="scene-card negative">
+          <div class="scene-emoji">😔</div>
+          <h3>「なんかしんどい」の正体を知りたい</h3>
+          <p>見返したとき、落ちやすい場所や時間帯のパターンに気づける。原因不明のしんどさに輪郭が生まれる。</p>
         </article>
-        <div>
-          <article class="price-features">
-            <h3>Creative Kit でできること</h3>
-            <ul class="feature-list">
-              <li>
-                <div class="feat-icon">🎨</div>
-                <div class="feat-text">
-                  <strong>絵文字・フォントをフル解放</strong>
-                  <span>表現の幅が一気に広がります</span>
-                </div>
-              </li>
-              <li>
-                <div class="feat-icon">💾</div>
-                <div class="feat-text">
-                  <strong>透かしなしで保存・シェア</strong>
-                  <span>ちゃんと残る。SNSにもそのまま</span>
-                </div>
-              </li>
-              <li>
-                <div class="feat-icon">📱</div>
-                <div class="feat-text">
-                  <strong>複数端末で購入の復元に対応</strong>
-                  <span>機種変更しても安心</span>
-                </div>
-              </li>
-              <li>
-                <div class="feat-icon">🔒</div>
-                <div class="feat-text">
-                  <strong>端末中心でデータを保管</strong>
-                  <span>気持ちの記録は自分の手元に</span>
-                </div>
-              </li>
-            </ul>
-          </article>
-          <div class="free-note">
-            <div><strong>無料版でできること：</strong>絵文字での感情記録・写真への一言メモ・過去の振り返り。<br>Creative Kitで絵文字/フォント全解放・透かしなし保存が追加されます。</div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -1385,11 +1306,11 @@
       <div class="faq-grid">
         <article class="faq-item">
           <h3>データはどこに保存されますか？</h3>
-          <p>現時点では、感情の記録は端末中心で扱う前提です。プライバシーに配慮しつつ、あとから見返しやすい体験を優先しています。</p>
+          <p>現時点では、すべてのデータはお使いの端末内にのみ保存されます。サーバーへの送信・クラウド保存は行っていないため、プライバシーの心配はありません。</p>
         </article>
         <article class="faq-item">
           <h3>無料でどこまで試せますか？</h3>
-          <p>絵文字での感情記録・写真への一言メモ・過去の振り返りは無料で体験できます。Creative Kitでは絵文字/フォント全解放と透かしなし保存が追加されます。</p>
+          <p>β版として、絵文字での感情記録・写真への一言メモ・カレンダーでの振り返りをすべて無料で体験できます。</p>
         </article>
         <article class="faq-item">
           <h3>どんな人に向いていますか？</h3>
@@ -1439,7 +1360,6 @@
     </div>
     <nav class="footer-links">
       <a href="#faq">FAQ</a>
-      <a href="#price">価格</a>
       <a href="#value">価値</a>
       <a href="privacy-lp.html">プライバシー</a>
       <a href="terms.html">利用規約</a>
@@ -1456,7 +1376,7 @@
 
     var targets = document.querySelectorAll(
       '.risk-card, .value-card, .step-card, .faq-item, ' +
-      '.testi-card, .stage-content, .manifesto-point, ' +
+      '.scene-card, .stage-content, .manifesto-point, ' +
       '.pain-item, .emo-sample'
     );
     targets.forEach(function (el) { el.classList.add('anim-up'); });
