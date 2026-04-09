@@ -366,27 +366,6 @@
     .risk-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
     .risk-card p { color: var(--ink-mid); font-size: 0.92rem; line-height: 1.8; }
 
-    /* Pain box */
-    .pain-banner {
-      background: var(--ink); color: #fff;
-      border-radius: var(--r-xl); padding: 40px 48px;
-      margin-top: 32px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
-    }
-    .pain-banner h3 {
-      font-family: "Fraunces", serif;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      line-height: 1.3; margin-bottom: 12px;
-    }
-    .pain-banner p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.8; }
-    .pain-items { display: grid; gap: 14px; }
-    .pain-item {
-      display: flex; align-items: center; gap: 14px;
-      background: rgba(255,255,255,0.06); border-radius: var(--r-md); padding: 14px 18px;
-    }
-    .pain-item .icon { font-size: 1.4rem; flex-shrink: 0; }
-    .pain-item span { font-size: 0.92rem; color: rgba(255,255,255,0.85); }
-
     /* ─── VALUE ─── */
     .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
@@ -451,103 +430,6 @@
       font-size: 0.88rem; color: rgba(255,255,255,0.7);
     }
     .emo-sample .sample-emoji { font-size: 1.8rem; }
-
-    /* ─── BRAND SCRIPT / 3 STAGES ─── */
-    .brandscript-section { background: linear-gradient(180deg, var(--bg), #EDE5D8); }
-    .stages { display: grid; gap: 0; }
-    .stage {
-      display: grid; grid-template-columns: 80px 1fr; gap: 0;
-      position: relative;
-    }
-    .stage:not(:last-child)::after {
-      content: "";
-      position: absolute; left: 39px; top: 80px; bottom: -1px;
-      width: 2px; background: linear-gradient(180deg, var(--brand), transparent);
-    }
-    .stage-num {
-      width: 80px; flex-shrink: 0;
-    }
-    .stage-circle {
-      width: 48px; height: 48px;
-      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: "Fraunces", serif; font-weight: 700; color: #fff; font-size: 1.2rem;
-      box-shadow: 0 8px 24px rgba(232,89,58,0.28);
-      position: relative; z-index: 1;
-    }
-    .stage-content {
-      background: var(--paper); border: 1px solid var(--line);
-      border-radius: var(--r-xl); padding: 28px 32px;
-      margin-bottom: 20px;
-      box-shadow: var(--shadow-sm);
-    }
-    .stage-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
-    .stage-action {
-      display: inline-flex; align-items: center; gap: 8px;
-      margin-top: 14px; padding: 8px 16px;
-      background: var(--brand-glow); color: var(--brand-dark);
-      border-radius: 999px; font-size: 0.85rem; font-weight: 700;
-    }
-    .stage-action::before { content: "👉"; }
-    .stage-content p { color: var(--ink-mid); font-size: 0.95rem; line-height: 1.8; }
-    .stage-quotes { display: grid; gap: 8px; margin-top: 12px; }
-    .stage-quote {
-      font-size: 0.88rem; color: var(--ink-mid); font-style: italic;
-      padding-left: 16px; border-left: 2px solid var(--brand);
-    }
-
-    /* Brandscript manifesto */
-    .manifesto {
-      background: var(--ink); border-radius: var(--r-xl);
-      padding: 48px; margin-top: 48px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
-      box-shadow: var(--shadow-lg);
-    }
-    .manifesto .m-left h3 {
-      font-family: "Fraunces", serif; font-style: italic;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      color: #fff; line-height: 1.3; margin-bottom: 20px;
-    }
-    .manifesto .m-left p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.9; }
-    .manifesto .m-right {}
-    .manifesto-points { display: grid; gap: 14px; }
-    .manifesto-point {
-      display: flex; align-items: flex-start; gap: 14px;
-      background: rgba(255,255,255,0.06); border-radius: var(--r-md);
-      padding: 16px 20px;
-    }
-    .manifesto-point .mp-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
-    .manifesto-point span { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
-    .m-right h4 {
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
-    }
-
-    /* ─── GUIDE / STORY ─── */
-    .guide-layout {
-      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; align-items: center;
-    }
-    .guide-image {
-      border-radius: var(--r-xl); overflow: hidden;
-      box-shadow: var(--shadow-lg); aspect-ratio: 4/3; min-height: 360px;
-      background: linear-gradient(160deg, #E8E0D5, #D5C9BB);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 4rem;
-    }
-    .guide-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .checklist { display: grid; gap: 12px; margin-top: 24px; list-style: none; }
-    .checklist li {
-      display: flex; align-items: flex-start; gap: 12px;
-      font-size: 0.95rem; color: var(--ink-mid);
-    }
-    .checklist li::before {
-      content: "✓"; flex-shrink: 0;
-      width: 24px; height: 24px;
-      background: var(--brand-glow); color: var(--brand-dark);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; font-weight: 900; margin-top: 2px;
-    }
 
     /* ─── STEPS ─── */
     .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -673,6 +555,7 @@
       font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.2; margin-bottom: 14px;
     }
     .leadgen-main p { font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 28px; }
+    .leadgen-main .leadgen-note { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
     .leadgen-btn {
       display: inline-flex; align-items: center; gap: 10px;
       background: #fff; color: var(--brand-dark);
@@ -696,6 +579,41 @@
       padding: 12px 16px; background: var(--bg); border-radius: var(--r-md);
     }
     .target-list li::before { content: "✓"; color: var(--brand); font-weight: 900; flex-shrink: 0; }
+
+    /* ─── BEFORE / AFTER ─── */
+    .beforeafter-section { padding: 80px 0; }
+    .beforeafter-layout {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center;
+    }
+    .beforeafter-image img {
+      width: 100%; border-radius: var(--r-xl);
+      box-shadow: var(--shadow-lg); object-fit: cover;
+    }
+    .beforeafter-content { display: flex; flex-direction: column; gap: 28px; }
+    .ba-cards {
+      display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center;
+    }
+    .ba-card {
+      border-radius: var(--r-lg); padding: 24px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .ba-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .ba-card ul li { font-size: 0.88rem; line-height: 1.6; }
+    .ba-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .ba-before { background: rgba(26,22,18,0.05); border: 1px solid var(--line); }
+    .ba-before .ba-label { color: var(--ink-soft); }
+    .ba-before ul li::before { content: "·  "; color: var(--ink-soft); }
+    .ba-after { background: var(--teal-soft); border: 1px solid rgba(13,107,110,0.15); }
+    .ba-after .ba-label { color: var(--teal); }
+    .ba-after ul li::before { content: "✓  "; color: var(--teal); font-weight: 700; }
+    .ba-arrow { font-size: 1.5rem; color: var(--ink-soft); text-align: center; }
+    @media (max-width: 860px) {
+      .beforeafter-layout { grid-template-columns: 1fr; }
+      .beforeafter-image { max-height: 280px; overflow: hidden; border-radius: var(--r-xl); }
+      .beforeafter-image img { height: 280px; }
+      .ba-cards { grid-template-columns: 1fr; }
+      .ba-arrow { transform: rotate(90deg); justify-self: center; }
+    }
 
     /* ─── FEEDBACK ─── */
     .feedback-section {
@@ -790,15 +708,13 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 960px) {
-      .hero-layout, .guide-layout, .price-layout, .leadgen-grid,
-      .pain-banner, .emo-strip, .manifesto {
+      .hero-layout, .price-layout, .leadgen-grid,
+      .emo-strip, .beforeafter-layout {
         grid-template-columns: 1fr;
       }
       .risk-grid, .value-grid, .steps-grid { grid-template-columns: 1fr 1fr; }
       .testi-grid { grid-template-columns: 1fr; }
       .phone-visual { min-height: 360px; }
-      .manifesto { padding: 32px; }
-      .pain-banner { padding: 32px; }
     }
     @media (max-width: 640px) {
       .wrap { padding: 0 12px; width: 100%; width: calc(100dvw - 24px); }
@@ -998,14 +914,14 @@
     <div class="wrap">
       <div class="section-head">
         <div class="section-kicker">Risk</div>
-        <h2 class="section-h2">感情が見えないまま、<br>生き続けることになります。</h2>
-        <p class="section-lead">感情は記録しなければ消えます。原因不明のしんどさが続くのは、見えていないからです。</p>
+        <h2 class="section-h2">このまま3ヶ月後も、<br>同じしんどさを抱えたままです。</h2>
+        <p class="section-lead">感情は記録しなければ消えます。3ヶ月後も「なんかしんどい」が続くのは、原因が見えていないからです。</p>
       </div>
 
-      <div class="value-grid">
+      <div class="risk-grid">
 
-  <article class="card value-card">
-    <div class="value-number">01</div>
+  <article class="card risk-card">
+    <div class="risk-num">01</div>
     <h3>感情が蓄積していく</h3>
     <p>
       吐き出す場所がないと、小さなモヤモヤが少しずつ積み重なります。<br>
@@ -1013,8 +929,8 @@
     </p>
   </article>
 
-  <article class="card value-card">
-    <div class="value-number">02</div>
+  <article class="card risk-card">
+    <div class="risk-num">02</div>
     <h3>「なぜしんどいか」が分からない</h3>
     <p>
       感情を記録していないと、パターンが見えない。<br>
@@ -1022,8 +938,8 @@
     </p>
   </article>
 
-  <article class="card value-card">
-    <div class="value-number">03</div>
+  <article class="card risk-card">
+    <div class="risk-num">03</div>
     <h3>毎日が変わらないまま続く</h3>
     <p>
       気づきがなければ、選択は変わらない。<br>
@@ -1033,26 +949,6 @@
 
 </div>
 
-      <div class="pain-banner">
-        <div>
-          <h3>一番やばいポイントは、<br>「自分の感情が見えてない状態」＝コントロール不能</h3>
-          <p>ここが優先度が高い悩みです。感情が見えないから、改善できない。改善できないから、毎日がしんどいまま続いていきます。</p>
-        </div>
-        <div class="pain-items">
-          <div class="pain-item">
-            <span class="icon">😶‍🌫️</span>
-            <span>ストレスはあるのに言語化できない</span>
-          </div>
-          <div class="pain-item">
-            <span class="icon">🔄</span>
-            <span>発散できないから蓄積するだけ</span>
-          </div>
-          <div class="pain-item">
-            <span class="icon">❓</span>
-            <span>「何が原因か分からない」から改善できない</span>
-          </div>
-        </div>
-      </div>
 
     </div>
   </section>
@@ -1119,94 +1015,36 @@
     </div>
   </section>
 
-  <!-- ─── BRAND SCRIPT / 3 STAGES ─── -->
-  <section class="brandscript-section" id="brand">
+  <!-- ─── BEFORE / AFTER ─── -->
+  <section class="beforeafter-section" id="change">
     <div class="wrap">
-      <div class="section-head">
-        <div class="section-kicker">Brand Script</div>
-        <h2 class="section-h2">あなたの3段階の変化</h2>
-        <p class="section-lead">EmoSnapが目指しているのは、感情を溜め込まずに吐き出せるようになり、あとで見返して「これ、無理してたな」と自然に気づける——その状態です。</p>
-      </div>
-
-      <div class="stages">
-        <div class="stage">
-          <div class="stage-num"><div class="stage-circle">1</div></div>
-          <div class="stage-content">
-            <h3>第1段階：撮って、のせるだけ</h3>
-            <p>写真を撮って、感じたままに絵文字や一言をのせるだけ。考えなくていい。整えなくていい。</p>
-            <div class="stage-action">"今の感情"を吐き出して、そのまま残す</div>
-          </div>
-        </div>
-        <div class="stage">
-          <div class="stage-num"><div class="stage-circle">2</div></div>
-          <div class="stage-content">
-            <h3>第2段階：見返すと、気づく</h3>
-            <p>何気なく残した記録を見返すと——</p>
-            <div class="stage-quotes">
-              <div class="stage-quote">「あ、自分こういうとき嬉しいんだ」</div>
-              <div class="stage-quote">「この時ちょっと無理してたな」</div>
-            </div>
-            <div class="stage-action">感情のクセや流れに気づく</div>
-          </div>
-        </div>
-        <div class="stage">
-          <div class="stage-num"><div class="stage-circle">3</div></div>
-          <div class="stage-content">
-            <h3>第3段階：日常の選択が変わる</h3>
-            <p>気づきが増えると、無理しすぎなくなる。嫌なものを避けられる。好きな時間を増やせる。</p>
-            <div class="stage-action">"自分で選んでる感覚"が戻ってくる</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="manifesto">
-        <div class="m-left">
-          <h3>感情を溜め込まずに吐き出せるようになり、あとで見返して「これ、無理してたな」と自然に気づける。</h3>
-          <p>問題はシンプルです。感情はその瞬間にしか存在しないのに、それを"簡単に吐き出して、そのまま残す手段"がない。その結果、写真は残るのに、気持ちは残らない。EmoSnapは、写真を撮る行為を感情の記録に変えます。</p>
-        </div>
-        <div class="m-right">
-          <h4>こんな変化を狙っています</h4>
-          <div class="manifesto-points">
-            <div class="manifesto-point">
-              <span class="mp-icon">🔍</span>
-              <span>「なんとなくしんどい」の正体が分かる</span>
-            </div>
-            <div class="manifesto-point">
-              <span class="mp-icon">👥</span>
-              <span>無理しやすい場面や人間関係が見える</span>
-            </div>
-            <div class="manifesto-point">
-              <span class="mp-icon">⏰</span>
-              <span>好きな時間を増やす判断がしやすくなる</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── GUIDE ─── -->
-  <section id="guide">
-    <div class="wrap">
-      <div class="guide-layout">
-        <div class="guide-image">
-          <img src="assets/lp-guide.jpeg" alt="EmoSnap story"
+      <div class="beforeafter-layout">
+        <div class="beforeafter-image">
+          <img src="assets/lp-guide.jpeg" alt="EmoSnap"
             onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-size:4rem\'>📷</span>'">
         </div>
-        <div>
-          <div class="section-kicker">Guide</div>
-          <h2 class="section-h2">続かない記録と、言語化できないモヤモヤ。<br>私たちも困っていました。</h2>
-          <p class="section-lead">
-  だから EmoSnap は、ちゃんと書ける人のためではなく、<br>
-  <strong>書けない日は絵文字だけ、書ける日はメモも残せる</strong>ように設計しています。
-</p>
-          <ul class="checklist">
-            <li>考えなくていい入力導線</li>
-            <li>感情を作品っぽく残せる楽しさ</li>
-            <li>あとから振り返るための軽い習慣化</li>
-            <li>日記が続かなかった人でも試しやすい軽さ</li>
-          </ul>
+        <div class="beforeafter-content">
+          <div class="section-kicker">Before / After</div>
+          <h2 class="section-h2">1週間で、<br>何が変わるか。</h2>
+          <div class="ba-cards">
+            <div class="ba-card ba-before">
+              <div class="ba-label">今のあなた</div>
+              <ul>
+                <li>なんかしんどいけど理由が分からない</li>
+                <li>写真はあるのに、感情の記録がない</li>
+                <li>日記は続かない</li>
+              </ul>
+            </div>
+            <div class="ba-arrow">→</div>
+            <div class="ba-card ba-after">
+              <div class="ba-label">1週間後</div>
+              <ul>
+                <li>落ちやすい日のパターンが見え始める</li>
+                <li>感情に輪郭が生まれる</li>
+                <li>写真を撮るだけで続けられる</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1318,7 +1156,7 @@
         </article>
         <article class="faq-item">
           <h3>今すぐ始めるべきですか？</h3>
-          <p>しんどさの原因がぼやけているなら、始める理由は十分あります。1週間だけでも、見えてくるものがあります。</p>
+          <p>しんどさの原因がぼやけているなら、今すぐが最適です。1週間だけ試して、合わなければやめればいい。それだけです。</p>
         </article>
       </div>
     </div>
@@ -1330,9 +1168,10 @@
       <div class="leadgen-grid">
         <article class="leadgen-main">
           <h2>1週間だけ、試してみてください。</h2>
-          <p>感情が残る感覚は、説明より体験の方が早い。今はβ版として公開中。無料で試せます。使ってみて率直な感想を聴かせていただけると嬉しいです。</p>
+          <p>感情が残る感覚は、説明より体験の方が早い。今はβ版として公開中。全機能を無料で試せます。</p>
+          <p class="leadgen-note">β版は期間・人数ともに限定です。今のフィードバックが直接機能に反映されます。正式リリース後は有料になる機能も、今なら無料で体験できます。</p>
           <a class="leadgen-btn" href="https://testflight.apple.com/join/brPbWXyK">無料で先行体験する</a>
-          <span class="leadgen-btn-note">β版 · TestFlight · 無料</span>
+          <span class="leadgen-btn-note">β版 · TestFlight · 無料 · 招待コード不要</span>
         </article>
         <article class="target-card">
           <h3>こんな人に刺さります</h3>
@@ -1376,8 +1215,7 @@
 
     var targets = document.querySelectorAll(
       '.risk-card, .value-card, .step-card, .faq-item, ' +
-      '.scene-card, .stage-content, .manifesto-point, ' +
-      '.pain-item, .emo-sample'
+      '.scene-card, .emo-sample, .ba-card, .beforeafter-image'
     );
     targets.forEach(function (el) { el.classList.add('anim-up'); });
 
