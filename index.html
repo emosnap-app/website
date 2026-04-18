@@ -464,6 +464,38 @@
     .step-card p { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.8; }
 
 
+    /* ─── SCREENS ─── */
+    .screens-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .screens-left { display: flex; flex-direction: column; gap: 32px; }
+    .screen-desc { display: flex; flex-direction: column; gap: 6px; }
+    .screen-desc-num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; color: var(--brand); }
+    .screen-desc h3 { font-size: 1.1rem; font-weight: 700; }
+    .screen-desc p { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.7; }
+    .screens-right {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .screen-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .screen-frame {
+      background: #1A1612;
+      border-radius: 36px;
+      border: 7px solid #1A1612;
+      box-shadow: 0 24px 60px rgba(26,22,18,0.3), inset 0 0 0 1px rgba(255,255,255,0.08);
+      overflow: hidden;
+      width: 100%;
+    }
+    .screen-frame img { width: 100%; height: auto; display: block; }
+    .screen-caption {
+      font-size: 0.8rem; color: var(--ink-soft); text-align: center; line-height: 1.5;
+    }
+
     /* ─── FAQ ─── */
     .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .faq-item {
@@ -613,6 +645,8 @@
       section { padding: 56px 0; }
       .risk-grid, .value-grid, .steps-grid, .faq-grid,
       .hero-stats { grid-template-columns: 1fr; }
+      .screens-layout { grid-template-columns: 1fr; }
+      .screens-right { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
       .nav-links { display: none; }
       .leadgen-main { padding: 32px 28px; }
       .cta-main { width: 100%; }
@@ -1034,6 +1068,50 @@
   </article>
 
 </div>
+    </div>
+  </section>
+
+  <!-- ─── SCREENS ─── -->
+  <section id="screens">
+    <div class="wrap">
+      <div class="screens-layout">
+        <div class="screens-left">
+          <div>
+            <div class="section-kicker">Screen</div>
+            <h2 class="section-h2">撮って、のせて、<br>見返す。</h2>
+          </div>
+          <div class="screen-desc">
+            <span class="screen-desc-num">01 · 記録</span>
+            <h3>写真に絵文字とメモをのせる</h3>
+            <p>撮った写真に今の気持ちを重ねる。文章を書かなくていい。絵文字だけでも、一言でも、それで十分です。</p>
+          </div>
+          <div class="screen-desc">
+            <span class="screen-desc-num">02 · 振り返り</span>
+            <h3>カレンダーで感情の流れを確認</h3>
+            <p>絵文字が並ぶカレンダーを見るだけで、自分のパターンが見えてきます。「あの週、なんか落ちてたな」が一目でわかる。</p>
+          </div>
+        </div>
+        <div class="screens-right">
+          <div class="screen-item">
+            <div class="screen-frame">
+              <picture>
+                <source srcset="assets/IMG_5291.webp" type="image/webp">
+                <img src="assets/IMG_5291.PNG" alt="記録画面 - 絵文字とメモを入力" loading="lazy">
+              </picture>
+            </div>
+            <p class="screen-caption">記録画面</p>
+          </div>
+          <div class="screen-item">
+            <div class="screen-frame">
+              <picture>
+                <source srcset="assets/IMG_5292.webp" type="image/webp">
+                <img src="assets/IMG_5292.PNG" alt="カレンダー画面 - 感情の流れを確認" loading="lazy">
+              </picture>
+            </div>
+            <p class="screen-caption">カレンダー画面</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
