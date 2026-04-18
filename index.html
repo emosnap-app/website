@@ -774,21 +774,83 @@
       font-size: 0.95rem;
     }
 
-    /* 情報削減（スマホでは隠す） */
-    .hero-stats {
-      display: none;
-    }
-
+    /* persona-box: スマホ用コンパクト表示 */
     .persona-box {
-      display: none;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+    }
+    .persona-thoughts {
+      gap: 6px;
+    }
+    .persona-thought {
+      font-size: 0.88rem;
+      line-height: 1.6;
     }
 
+    /* floating-cards: phone-visualの下にインライン表示 */
     .floating-cards {
-      display: none;
+      position: static;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      padding: 14px 0 0;
+      justify-content: center;
+    }
+    .float-card {
+      flex: 1;
+      text-align: center;
+      padding: 10px 12px;
+      font-size: 0.78rem;
+    }
+    .float-card strong {
+      font-size: 0.82rem;
     }
 
-    .emo-strip {
+    /* hero-stats: 2カラムで表示（3つ目は非表示） */
+    .hero-stats {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 14px;
+      gap: 10px;
+    }
+    .hero-stat:nth-child(3) {
       display: none;
+    }
+    .hero-stat .num {
+      font-size: 1.5rem;
+    }
+    .hero-stat span {
+      font-size: 0.78rem;
+    }
+
+    /* emo-strip: テキスト部分のみ縦並びで表示 */
+    .emo-strip {
+      grid-template-columns: 1fr;
+      padding: 28px 24px;
+      gap: 20px;
+    }
+    .emo-strip h3 {
+      font-size: 1.3rem;
+    }
+    .emo-visual {
+      padding: 20px 16px;
+    }
+    .emo-sample {
+      padding: 12px;
+      font-size: 0.82rem;
+    }
+    .emo-sample .sample-emoji {
+      font-size: 1.4rem;
+    }
+
+    /* phone-visual: スマホでは overflow: hidden を外してfloating-cardsを表示 */
+    .phone-visual {
+      overflow: visible;
+      min-height: auto;
+      padding: 24px 24px 0;
+    }
+    .phone-visual::before {
+      border-radius: var(--r-xl);
+      overflow: hidden;
     }
 
     /* CTA強化 */
