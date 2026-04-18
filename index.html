@@ -469,7 +469,7 @@
       gap: 20px;
       align-items: start;
     }
-    .screen-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .screen-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
     .screen-frame {
       background: #1A1612;
       border-radius: 36px;
@@ -479,6 +479,7 @@
       width: 100%;
     }
     .screen-frame img { width: 100%; height: auto; display: block; }
+    .screen-caption { font-size: 0.8rem; color: var(--ink-soft); text-align: center; }
 
     /* ─── FAQ ─── */
     .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -630,7 +631,7 @@
       .risk-grid, .value-grid, .faq-grid,
       .hero-stats { grid-template-columns: 1fr; }
       .screens-layout { grid-template-columns: 1fr; }
-      .screens-right { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
+      .screens-right { max-width: 320px; margin: 0 auto; }
       .nav-links { display: none; }
       .leadgen-main { padding: 32px 28px; }
       .cta-main { width: 100%; }
@@ -1046,6 +1047,7 @@
                 <img src="assets/IMG_5291.PNG" alt="記録画面 - 絵文字とメモを入力" loading="lazy" width="390" height="844">
               </picture>
             </div>
+            <p class="screen-caption">記録画面</p>
           </div>
           <div class="screen-item">
             <div class="screen-frame">
@@ -1054,6 +1056,7 @@
                 <img src="assets/IMG_5292.PNG" alt="カレンダー画面 - 感情の流れを確認" loading="lazy" width="390" height="844">
               </picture>
             </div>
+            <p class="screen-caption">カレンダー画面</p>
           </div>
         </div>
       </div>
@@ -1121,7 +1124,7 @@
   <div class="wrap footer-inner">
     <div class="footer-brand">
       <strong>EmoSnap</strong>
-      <p>写真と感情を一緒に残して、あとから自分を理解し直すための iOS アプリ。</p>
+      <p>写真とメモで感情を残して、あとから自分を理解し直す感情記録アプリ。</p>
     </div>
     <nav class="footer-links">
       <a href="#faq">FAQ</a>
