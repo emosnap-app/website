@@ -449,19 +449,6 @@
     }
     .emo-sample .sample-emoji { font-size: 1.8rem; }
 
-    /* ─── STEPS ─── */
-    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .step-card { position: relative; overflow: hidden; }
-    .step-card::before {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(160deg, rgba(232,89,58,0.04), transparent);
-    }
-    .step-num {
-      font-family: "Fraunces", serif; font-size: 4rem; font-weight: 700;
-      color: rgba(232,89,58,0.12); line-height: 1; margin-bottom: 16px;
-    }
-    .step-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
-    .step-card p { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.8; }
 
 
     /* ─── SCREENS ─── */
@@ -492,9 +479,6 @@
       width: 100%;
     }
     .screen-frame img { width: 100%; height: auto; display: block; }
-    .screen-caption {
-      font-size: 0.8rem; color: var(--ink-soft); text-align: center; line-height: 1.5;
-    }
 
     /* ─── FAQ ─── */
     .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -637,13 +621,13 @@
       .hero-layout, .leadgen-grid, .emo-strip, .beforeafter-layout {
         grid-template-columns: 1fr;
       }
-      .risk-grid, .value-grid, .steps-grid { grid-template-columns: 1fr 1fr; }
+      .risk-grid, .value-grid { grid-template-columns: 1fr 1fr; }
       .phone-visual { min-height: 360px; }
     }
     @media (max-width: 640px) {
       .wrap { padding: 0 12px; width: 100%; width: calc(100dvw - 24px); }
       section { padding: 56px 0; }
-      .risk-grid, .value-grid, .steps-grid, .faq-grid,
+      .risk-grid, .value-grid, .faq-grid,
       .hero-stats { grid-template-columns: 1fr; }
       .screens-layout { grid-template-columns: 1fr; }
       .screens-right { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
@@ -1034,51 +1018,14 @@
     </div>
   </section>
 
-  <!-- ─── HOW ─── -->
-  <section id="how">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-kicker">Plan</div>
-        <h2 class="section-h2">使い方は、3ステップだけ。</h2>
-      </div>
-      <div class="steps-grid">
-
-  <article class="card step-card">
-    <div class="step-num">01</div>
-    <h3>撮る</h3>
-    <p>その日の一枚を撮る。特別じゃなくていい。</p>
-  </article>
-
-  <article class="card step-card">
-    <div class="step-num">02</div>
-    <h3>のせる</h3>
-    <p>
-      絵文字で気持ちを置く。<br>
-      余裕があれば、一言メモを添える。
-    </p>
-  </article>
-
-  <article class="card step-card">
-    <div class="step-num">03</div>
-    <h3>見返す</h3>
-    <p>
-      「あの時こう感じてたんだ」が分かる。<br>
-      ここで初めて意味がつながります。
-    </p>
-  </article>
-
-</div>
-    </div>
-  </section>
-
   <!-- ─── SCREENS ─── -->
-  <section id="screens">
+  <section id="how">
     <div class="wrap">
       <div class="screens-layout">
         <div class="screens-left">
           <div>
-            <div class="section-kicker">Screen</div>
-            <h2 class="section-h2">撮って、のせて、<br>見返す。</h2>
+            <div class="section-kicker">How</div>
+            <h2 class="section-h2">使い方は、<br>これだけ。</h2>
           </div>
           <div class="screen-desc">
             <span class="screen-desc-num">01 · 記録</span>
@@ -1096,19 +1043,17 @@
             <div class="screen-frame">
               <picture>
                 <source srcset="assets/IMG_5291.webp" type="image/webp">
-                <img src="assets/IMG_5291.PNG" alt="記録画面 - 絵文字とメモを入力" loading="lazy">
+                <img src="assets/IMG_5291.PNG" alt="記録画面 - 絵文字とメモを入力" loading="lazy" width="390" height="844">
               </picture>
             </div>
-            <p class="screen-caption">記録画面</p>
           </div>
           <div class="screen-item">
             <div class="screen-frame">
               <picture>
                 <source srcset="assets/IMG_5292.webp" type="image/webp">
-                <img src="assets/IMG_5292.PNG" alt="カレンダー画面 - 感情の流れを確認" loading="lazy">
+                <img src="assets/IMG_5292.PNG" alt="カレンダー画面 - 感情の流れを確認" loading="lazy" width="390" height="844">
               </picture>
             </div>
-            <p class="screen-caption">カレンダー画面</p>
           </div>
         </div>
       </div>
@@ -1195,7 +1140,7 @@
     document.documentElement.classList.add('js-ready');
 
     var targets = document.querySelectorAll(
-      '.risk-card, .value-card, .step-card, .faq-item, ' +
+      '.risk-card, .value-card, .faq-item, ' +
       '.emo-sample, .ba-card, .beforeafter-image'
     );
     targets.forEach(function (el) { el.classList.add('anim-up'); });
