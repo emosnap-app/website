@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope itemtype="http://schema.org/WebPage" translate="no">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage" translate="no">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5">
-  <title>EmoSnap | 写真は残るのに、気持ちは消える。</title>
-  <link rel="icon" type="image/png" href="assets/logo.png" />
-  <link rel="apple-touch-icon" href="assets/logo.png" />
-  <link rel="canonical" href="https://www.emosnap.com/" />
+  <title>EmoSnap | Your photos stay. Your feelings disappear.</title>
+  <link rel="icon" type="image/png" href="../assets/logo.png" />
+  <link rel="apple-touch-icon" href="../assets/logo.png" />
+  <link rel="canonical" href="https://www.emosnap.com/en/" />
   <link rel="alternate" hreflang="ja" href="https://www.emosnap.com/" />
   <link rel="alternate" hreflang="en" href="https://www.emosnap.com/en/" />
   <link rel="alternate" hreflang="zh-Hans" href="https://www.emosnap.com/zh-hans/" />
@@ -18,19 +18,19 @@
   <meta name="theme-color" content="#FAF6F0" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="写真と一言メモで、そのときの気持ちまで残せるiOSアプリ。あとで振り返ることで、自分の感情の流れや変化に気づけます。" />
+  <meta name="description" content="An iOS app that lets you capture your feelings alongside your photos with a single emoji and note. Review your emotional patterns anytime." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="EmoSnap" />
-  <meta property="og:url" content="https://www.emosnap.com/" />
-  <meta property="og:title" content="EmoSnap | 写真は残るのに、気持ちは消える。" />
-  <meta property="og:description" content="写真と一言メモで、そのときの気持ちまで残せるiOSアプリ。あとで振り返ることで、自分の感情の流れや変化に気づけます。" />
+  <meta property="og:url" content="https://www.emosnap.com/en/" />
+  <meta property="og:title" content="EmoSnap | Your photos stay. Your feelings disappear." />
+  <meta property="og:description" content="An iOS app that lets you capture your feelings alongside your photos with a single emoji and note. Review your emotional patterns anytime." />
   <meta property="og:image" content="https://www.emosnap.com/assets/lp-guide.jpeg" />
   <meta property="og:image:width" content="1000" />
   <meta property="og:image:height" content="560" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="EmoSnap | 写真は残るのに、気持ちは消える。" />
-  <meta name="twitter:description" content="写真と一言メモで、そのときの気持ちまで残せるiOSアプリ。あとで振り返ることで、自分の感情の流れや変化に気づけます。" />
+  <meta name="twitter:title" content="EmoSnap | Your photos stay. Your feelings disappear." />
+  <meta name="twitter:description" content="An iOS app that lets you capture your feelings alongside your photos with a single emoji and note. Review your emotional patterns anytime." />
   <meta name="twitter:image" content="https://www.emosnap.com/assets/lp-guide.jpeg" />
   <meta name="google" content="notranslate" />
   <!-- Google tag (gtag.js) -->
@@ -44,7 +44,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,700;9..144,1,700&family=Noto+Serif+JP:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,700;9..144,1,700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -74,7 +74,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-family: system-ui, -apple-system, sans-serif;
       font-size: clamp(15px, 4vw, 17px);
       background: var(--bg);
       color: var(--ink);
@@ -247,8 +247,8 @@
       display: flex; align-items: flex-start; gap: 10px;
       font-size: 0.92rem; color: var(--ink-mid);
     }
-    .persona-thought::before { content: "「"; color: var(--ink-soft); flex-shrink: 0; }
-    .persona-thought::after  { content: "」"; color: var(--ink-soft); flex-shrink: 0; }
+    .persona-thought::before { content: "\""; color: var(--ink-soft); flex-shrink: 0; }
+    .persona-thought::after  { content: "\""; color: var(--ink-soft); flex-shrink: 0; }
 
     .cta-stack { display: flex; flex-direction: column; gap: 12px; }
     .cta-main {
@@ -264,6 +264,7 @@
       font-size: clamp(0.85rem, 3.5vw, 0.95rem);
       color: var(--ink-soft); text-align: center;
     }
+
     /* Right column */
     .hero-right { position: relative; }
 
@@ -629,18 +630,6 @@
       .risk-grid, .value-grid { grid-template-columns: 1fr 1fr; }
       .phone-visual { min-height: 360px; }
     }
-    @media (max-width: 640px) {
-      .wrap { padding: 0 12px; width: 100%; width: calc(100dvw - 24px); }
-      section { padding: 56px 0; }
-      .risk-grid, .value-grid, .faq-grid,
-      .hero-stats { grid-template-columns: 1fr; }
-      .screens-layout { grid-template-columns: 1fr; }
-      .screens-right { max-width: 320px; margin: 0 auto; }
-      .nav-links { display: none; }
-      .leadgen-main { padding: 32px 28px; }
-      .cta-main { width: 100%; }
-    }
-
     /* ── Emo+ Section ── */
     .emoplus-section { background: linear-gradient(180deg, #1E1510 0%, #2D1F14 100%); }
     .emoplus-section .section-kicker { color: #E8A87C; border-color: rgba(232,168,124,0.3); }
@@ -653,11 +642,22 @@
     .emoplus-card p { color: rgba(250,246,240,0.65); font-size: 0.92rem; line-height: 1.75; margin: 0; }
     .emoplus-note { margin-top: 40px; text-align: center; color: rgba(250,246,240,0.4); font-size: 0.85rem; }
     @media (max-width: 900px) { .emoplus-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 0 12px; width: 100%; width: calc(100dvw - 24px); }
+      section { padding: 56px 0; }
+      .risk-grid, .value-grid, .faq-grid,
+      .hero-stats { grid-template-columns: 1fr; }
+      .screens-layout { grid-template-columns: 1fr; }
+      .screens-right { max-width: 320px; margin: 0 auto; }
+      .nav-links { display: none; }
+      .leadgen-main { padding: 32px 28px; }
+      .cta-main { width: 100%; }
+    }
   </style>
   <style>
   @media (max-width: 640px) {
 
-    /* フォント調整 */
     body {
       font-size: 16px;
       line-height: 1.85;
@@ -682,7 +682,6 @@
       font-size: 0.95rem;
     }
 
-    /* persona-box: スマホ用コンパクト表示 */
     .persona-box {
       padding: 16px 18px;
       margin-bottom: 20px;
@@ -695,7 +694,6 @@
       line-height: 1.6;
     }
 
-    /* floating-cards: phone-visualの下にインライン表示 */
     .floating-cards {
       position: static;
       display: flex;
@@ -714,7 +712,6 @@
       font-size: 0.82rem;
     }
 
-    /* hero-stats: 2カラムで表示（3つ目は非表示） */
     .hero-stats {
       grid-template-columns: 1fr 1fr;
       margin-top: 14px;
@@ -730,7 +727,6 @@
       font-size: 0.78rem;
     }
 
-    /* emo-strip: テキスト部分のみ縦並びで表示 */
     .emo-strip {
       grid-template-columns: 1fr;
       padding: 28px 24px;
@@ -750,7 +746,6 @@
       font-size: 1.4rem;
     }
 
-    /* phone-visual: スマホでは overflow: hidden を外してfloating-cardsを表示 */
     .phone-visual {
       overflow: visible;
       min-height: auto;
@@ -761,13 +756,11 @@
       overflow: hidden;
     }
 
-    /* CTA強化 */
     .cta-main {
       font-size: 1.1rem;
       padding: 16px;
     }
 
-    /* 余白調整 */
     .hero {
       padding: 40px 0 24px;
     }
@@ -784,28 +777,28 @@
 <header class="site-header">
   <div class="wrap nav">
     <a class="brand" href="#top">
-      <img src="assets/logo.png" alt="EmoSnap" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="../assets/logo.png" alt="EmoSnap" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="brand-logo" style="display:none">📸</div>
       <div>
         <span class="brand-name">EmoSnap</span>
-        <span class="brand-sub">写真とメモで感情を残す、感情記録アプリ</span>
+        <span class="brand-sub">Photo emotion journal</span>
       </div>
     </a>
     <nav class="nav-links">
-      <a href="#value">価値</a>
-      <a href="#how">使い方</a>
+      <a href="#value">Value</a>
+      <a href="#how">How</a>
       <a href="#faq">FAQ</a>
       <div class="lang-switcher">
         <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
           <svg class="lang-globe" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          <span class="lang-current">日本語</span>
+          <span class="lang-current">English</span>
           <svg class="lang-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="lang-menu" id="langMenu">
-          <a href="/" class="lang-option lang-option--active">
+          <a href="/" class="lang-option">
             <span class="lang-flag">🇯🇵</span><span>日本語</span>
           </a>
-          <a href="/en/" class="lang-option">
+          <a href="/en/" class="lang-option lang-option--active">
             <span class="lang-flag">🇺🇸</span><span>English</span>
           </a>
           <a href="/zh-hans/" class="lang-option">
@@ -816,7 +809,7 @@
           </a>
         </div>
       </div>
-      <a class="nav-cta js-dl" href="#">ダウンロード</a>
+      <a class="nav-cta js-dl" href="#">Download</a>
     </nav>
   </div>
 </header>
@@ -830,38 +823,38 @@
 
         <!-- Left -->
         <div class="hero-left">
-          <div class="pill">iOS アプリ</div>
+          <div class="pill">iOS App</div>
 
           <h1 class="hero-h1">
-  写真は残るのに、<br><em>気持ちは消える。</em>
+  Your photos stay.<br><em>Your feelings disappear.</em>
 </h1>
 
           <p class="hero-lead">
-  EmoSnapは、<strong>写真とメモで感情を残す、感情記録アプリ</strong>。<br>
-  絵文字だけでもOK。テキストだけでもOK。<br>
-  感情を手放すと、ちょっと気持ちが楽になる。<br>
-  あとで見返せば、自分の変化がちゃんと分かる。
+  EmoSnap is <strong>a photo emotion journal</strong> that captures how you feel.<br>
+  An emoji is enough. A note is enough.<br>
+  Letting out your emotions lightens the moment.<br>
+  Looking back, you'll understand yourself better.
 </p>
 
           <div class="persona-box">
-            <div class="persona-label">こんな気持ち、ありませんか？</div>
+            <div class="persona-label">Sound familiar?</div>
             <div class="persona-thoughts">
-              <div class="persona-thought">今日も1日終わったけど、何してたっけ？</div>
-              <div class="persona-thought">なんか疲れてるけど理由がわからない</div>
-              <div class="persona-thought">写真は撮ってるけど、見返しても"ただの記録"なんだよな</div>
-              <div class="persona-thought">日記とか無理。続かないし、書くのめんどい</div>
+              <div class="persona-thought">Another day done — what did I even do?</div>
+              <div class="persona-thought">I'm exhausted, but I don't know why</div>
+              <div class="persona-thought">I take photos, but looking back they feel like just... records</div>
+              <div class="persona-thought">Journaling? Not for me. Too much effort.</div>
             </div>
           </div>
 
           <div class="cta-stack">
-            <a class="cta-main js-dl" href="#">App Store でダウンロード</a>
-            <span class="cta-note">App Store から無料でダウンロードできます。Emo+ は30日間無料でお試しいただけます。</span>
+            <a class="cta-main js-dl" href="#">Download on App Store</a>
+            <span class="cta-note">Free to download on the App Store. Emo+ includes a 30-day free trial.</span>
             <div class="cta-trust">
-              <span>📱 データは端末内に保管</span>
+              <span>📱 Data stays on your device</span>
               <span class="sep">·</span>
-              <span>💳 Emo+ 30日間無料トライアル</span>
+              <span>💳 Emo+ 30-day free trial</span>
               <span class="sep">·</span>
-              <span>🔒 プライバシー重視</span>
+              <span>🔒 Privacy first</span>
             </div>
           </div>
         </div>
@@ -870,7 +863,7 @@
         <div class="hero-right">
           <div class="phone-visual">
             <div class="phone-frame">
-              <img src="assets/lp-hero.jpeg" alt="EmoSnap app preview"
+              <img src="../assets/lp-hero.jpeg" alt="EmoSnap app preview"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="phone-frame-placeholder" style="display:none">
                 <span class="app-icon">📸</span>
@@ -879,27 +872,27 @@
             </div>
             <div class="floating-cards">
               <div class="float-card">
-                <strong>10秒で記録</strong>
-                <span>気合いがいらない</span>
+                <strong>10-sec capture</strong>
+                <span>No motivation needed</span>
               </div>
               <div class="float-card">
-                <strong>7日で変化が見える</strong>
-                <span>続けやすい設計</span>
+                <strong>7 days to see change</strong>
+                <span>Built to last</span>
               </div>
             </div>
           </div>
           <div class="hero-stats">
             <div class="hero-stat">
-              <span class="num">10秒</span>
-              <span>1回の記録目安</span>
+              <span class="num">10s</span>
+              <span>Per entry</span>
             </div>
             <div class="hero-stat">
-              <span class="num">7日</span>
-              <span>変化が見え始める</span>
+              <span class="num">7 days</span>
+              <span>Until patterns emerge</span>
             </div>
             <div class="hero-stat">
-              <span class="num">3秒〜</span>
-              <span>最短の記録時間</span>
+              <span class="num">3s+</span>
+              <span>Fastest entry</span>
             </div>
           </div>
         </div>
@@ -913,36 +906,33 @@
     <div class="wrap">
       <div class="section-head">
         <div class="section-kicker">Risk</div>
-        <h2 class="section-h2">このまま3ヶ月後も、<br>同じしんどさを抱えたままです。</h2>
-        <p class="section-lead">感情は記録しなければ消えます。3ヶ月後も「なんかしんどい」が続くのは、原因が見えていないからです。</p>
+        <h2 class="section-h2">Three months from now,<br>you'll still feel the same weight.</h2>
+        <p class="section-lead">Emotions vanish when unrecorded. "I just feel off" lingers because the cause stays invisible.</p>
       </div>
 
       <div class="risk-grid">
 
   <article class="card risk-card">
     <div class="risk-num">01</div>
-    <h3>感情が蓄積していく</h3>
+    <h3>Feelings pile up</h3>
     <p>
-      手放す場所がないと、小さなモヤモヤが少しずつ積み重なります。<br>
-      気づいたときには、原因が分からなくなっています。
+      Without a place to release them, small frustrations accumulate. By the time you notice, the cause is buried.
     </p>
   </article>
 
   <article class="card risk-card">
     <div class="risk-num">02</div>
-    <h3>「なぜしんどいか」が分からない</h3>
+    <h3>You can't see why you're struggling</h3>
     <p>
-      感情を記録していないと、パターンが見えない。<br>
-      原因が分からないから、改善のしようがない。
+      Without a log, patterns stay hidden. And without patterns, nothing changes.
     </p>
   </article>
 
   <article class="card risk-card">
     <div class="risk-num">03</div>
-    <h3>毎日が変わらないまま続く</h3>
+    <h3>Every day stays the same</h3>
     <p>
-      気づきがなければ、選択は変わらない。<br>
-      同じしんどさを繰り返す日常が、そのまま続きます。
+      No insight, no change. The same heaviness just keeps repeating.
     </p>
   </article>
 
@@ -957,25 +947,25 @@
     <div class="wrap">
       <div class="section-head">
         <div class="section-kicker">Value</div>
-        <h2 class="section-h2">売りは機能数ではなく、<br>感情の扱い方が変わること。</h2>
-        <p class="section-lead">言語化しなくていい。写真を撮って、絵文字をのせるだけ。それで「吐き出す」と「残す」が同時に完了します。</p>
+        <h2 class="section-h2">Not features. A new way<br>to handle your emotions.</h2>
+        <p class="section-lead">No writing needed. Take a photo, drop an emoji. That single act captures both the release and the record.</p>
       </div>
 
       <div class="value-grid">
         <article class="card value-card">
           <div class="value-number">01</div>
-          <h3>その場で軽くなる</h3>
-          <p>「うわ、ムカつく」→ 絵文字ポンで終わり。溜めない、引きずらない。吐き出すハードルを極端に下げて、溜め込む前に外へ出せます。</p>
+          <h3>Feel lighter, right now</h3>
+          <p>"Ugh, I'm so done." → Emoji. Done. Stop accumulating, stop carrying. The barrier to letting go is as low as it gets.</p>
         </article>
         <article class="card value-card">
           <div class="value-number">02</div>
-          <h3>自分の感情が見える</h3>
-          <p>あとから写真の並びを見返すと、嬉しい瞬間も、無理していた瞬間も、思っていた以上にくっきり残ります。無意識が見えてくる。</p>
+          <h3>See your emotions clearly</h3>
+          <p>Looking back at your photo stream, the happy moments and the overloaded ones stand out far more vividly than you expected. Your subconscious becomes visible.</p>
         </article>
         <article class="card value-card">
           <div class="value-number">03</div>
-          <h3>行動が変わる</h3>
-          <p>気づきが増えると、会う人、使う時間、休み方が変わります。"自分で選んでいる感覚"が戻ってきます。</p>
+          <h3>Watch your actions change</h3>
+          <p>More insights mean different choices — who you see, how you spend time, how you rest. The feeling of choosing your own life comes back.</p>
         </article>
       </div>
 
@@ -983,29 +973,29 @@
       <div class="emo-strip">
         <div>
           <div class="emo-badge">✨ emo</div>
-          <h3>写真に気持ちを重ねる。<br>それだけでいい。</h3>
-          <p>ただの記録じゃない。ちょっと楽しい。感情を写真に重ねて残す体験が、続けやすさを作ります。</p>
+          <h3>Overlay feelings on photos.<br>That's all you need.</h3>
+          <p>Not just a record — actually fun. Layering emotion onto a photo creates an experience that keeps you coming back.</p>
           <div class="emo-features">
-            <div class="emo-feature">写真に絵文字を重ねる</div>
-            <div class="emo-feature">気分を作品として残す</div>
+            <div class="emo-feature">Overlay emoji on photos</div>
+            <div class="emo-feature">Preserve mood as a moment</div>
           </div>
         </div>
         <div class="emo-visual">
           <div class="emo-sample">
             <span class="sample-emoji">😮‍💨</span>
-            <span>帰り道、なんか疲れた日</span>
+            <span>Tired on the way home</span>
           </div>
           <div class="emo-sample">
             <span class="sample-emoji">✨</span>
-            <span>あのカフェ、また行きたいな</span>
+            <span>That café — I want to go back</span>
           </div>
           <div class="emo-sample">
             <span class="sample-emoji">😤</span>
-            <span>あの会議、やっぱり無理だった</span>
+            <span>That meeting was too much</span>
           </div>
           <div class="emo-sample">
             <span class="sample-emoji">🌸</span>
-            <span>今日は案外いい日だった</span>
+            <span>Today was actually a good day</span>
           </div>
         </div>
       </div>
@@ -1018,28 +1008,28 @@
     <div class="wrap">
       <div class="beforeafter-layout">
         <div class="beforeafter-image">
-          <img src="assets/lp-guide.jpeg" alt="EmoSnap"
+          <img src="../assets/lp-guide.jpeg" alt="EmoSnap"
             onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-size:4rem\'>📷</span>'">
         </div>
         <div class="beforeafter-content">
           <div class="section-kicker">Before / After</div>
-          <h2 class="section-h2">1週間で、<br>何が変わるか。</h2>
+          <h2 class="section-h2">What changes<br>in one week.</h2>
           <div class="ba-cards">
             <div class="ba-card ba-before">
-              <div class="ba-label">今のあなた</div>
+              <div class="ba-label">You, right now</div>
               <ul>
-                <li>なんかしんどいけど理由が分からない</li>
-                <li>写真はあるのに、感情の記録がない</li>
-                <li>日記は続かない</li>
+                <li>I feel off, but I don't know why</li>
+                <li>Photos exist, but no emotional record</li>
+                <li>Journaling never sticks</li>
               </ul>
             </div>
             <div class="ba-arrow">→</div>
             <div class="ba-card ba-after">
-              <div class="ba-label">1週間後</div>
+              <div class="ba-label">After 1 week</div>
               <ul>
-                <li>落ちやすい日のパターンが見え始める</li>
-                <li>感情に輪郭が生まれる</li>
-                <li>写真を撮るだけで続けられる</li>
+                <li>You start seeing when you tend to drop</li>
+                <li>Your emotions gain shape</li>
+                <li>Just taking photos keeps you going</li>
               </ul>
             </div>
           </div>
@@ -1055,37 +1045,37 @@
         <div class="screens-left">
           <div>
             <div class="section-kicker">How</div>
-            <h2 class="section-h2">使い方は、<br>これだけ。</h2>
+            <h2 class="section-h2">How to use it.<br>That's it.</h2>
           </div>
           <div class="screen-desc">
-            <span class="screen-desc-num">01 · 記録</span>
-            <h3>写真に絵文字とメモをのせる</h3>
-            <p>撮った写真に今の気持ちを重ねる。文章を書かなくていい。絵文字だけでも、一言でも、それで十分です。</p>
+            <span class="screen-desc-num">01 · Record</span>
+            <h3>Add an emoji and note to your photo</h3>
+            <p>Layer today's feelings onto what you shot. No sentences needed — an emoji alone is enough.</p>
           </div>
           <div class="screen-desc">
-            <span class="screen-desc-num">02 · 振り返り</span>
-            <h3>カレンダーで感情の流れを確認</h3>
-            <p>絵文字が並ぶカレンダーを見るだけで、自分のパターンが見えてきます。「あの週、なんか落ちてたな」が一目でわかる。</p>
+            <span class="screen-desc-num">02 · Review</span>
+            <h3>Check your emotional flow in the calendar</h3>
+            <p>Just glancing at the emoji-filled calendar reveals your patterns. "I was low that week" becomes instantly clear.</p>
           </div>
         </div>
         <div class="screens-right">
           <div class="screen-item">
             <div class="screen-frame">
               <picture>
-                <source srcset="assets/IMG_5291.webp" type="image/webp">
-                <img src="assets/IMG_5291.PNG" alt="記録画面 - 絵文字とメモを入力" loading="lazy" width="390" height="844">
+                <source srcset="../assets/IMG_5291.webp" type="image/webp">
+                <img src="../assets/IMG_5291.PNG" alt="Record screen - add emoji and note" loading="lazy" width="390" height="844">
               </picture>
             </div>
-            <p class="screen-caption">記録画面</p>
+            <p class="screen-caption">Record screen</p>
           </div>
           <div class="screen-item">
             <div class="screen-frame">
               <picture>
-                <source srcset="assets/IMG_5292.webp" type="image/webp">
-                <img src="assets/IMG_5292.PNG" alt="カレンダー画面 - 感情の流れを確認" loading="lazy" width="390" height="844">
+                <source srcset="../assets/IMG_5292.webp" type="image/webp">
+                <img src="../assets/IMG_5292.PNG" alt="Calendar screen - review emotional flow" loading="lazy" width="390" height="844">
               </picture>
             </div>
-            <p class="screen-caption">カレンダー画面</p>
+            <p class="screen-caption">Calendar screen</p>
           </div>
         </div>
       </div>
@@ -1097,29 +1087,29 @@
     <div class="wrap">
       <div class="section-head">
         <div class="section-kicker">Emo+</div>
-        <h2 class="section-h2">続けるほどに、<br>自分の法則が見えてくる。</h2>
-        <p class="section-lead">記録が積み重なるとき、EmoSnapはただのアルバムじゃなくなります。</p>
+        <h2 class="section-h2">The longer you track,<br>the clearer you see yourself.</h2>
+        <p class="section-lead">As records stack up, EmoSnap becomes more than a photo album.</p>
       </div>
 
       <div class="emoplus-grid">
         <div class="emoplus-card">
           <div class="emoplus-icon">📈</div>
-          <h3>「なんか最近ダメだな」の<br>正体が、見えてくる</h3>
-          <p>感情グラフで気分の流れを時系列で確認できます。「月末はいつも落ちる」「あの人に会った日は上がる」——パターンが見えると、振り回されなくなります。</p>
+          <h3>You start to see why<br>"this week just felt off"</h3>
+          <p>The emotion graph shows your mood trends over time. "Month-end is always rough." "My mood goes up after seeing that person." Patterns become visible — and you stop being caught off guard.</p>
         </div>
         <div class="emoplus-card">
           <div class="emoplus-icon">☀️</div>
-          <h3>昨日の感情について、<br>今朝AIが聞いてくれる</h3>
-          <p>前日の記録をもとに、AIが翌朝に問いかけを届けます。自分では気づけなかった視点が、一言で降ってくる。それだけで、一日の始まりが変わります。</p>
+          <h3>Every morning, AI asks you<br>about yesterday</h3>
+          <p>Based on your previous day's record, a reflection question lands each morning. It surfaces something you didn't notice yourself — and changes how the day starts.</p>
         </div>
         <div class="emoplus-card">
           <div class="emoplus-icon">🗓️</div>
-          <h3>月曜の朝に<br>「先週の自分」が届く</h3>
-          <p>毎週月曜、先週の感情パターンをまとめたサマリーが来ます。「先週しんどかった理由、これか」と気づける週のスタートになります。</p>
+          <h3>Monday morning brings<br>last week's you</h3>
+          <p>Every Monday, a summary of last week's emotional patterns arrives. "So that's why last week was hard." One insight can shift how you approach the whole week ahead.</p>
         </div>
       </div>
 
-      <p class="emoplus-note">Emo+ 月額¥680 · 30日間無料トライアルあり</p>
+      <p class="emoplus-note">Emo+ · Monthly subscription · 30-day free trial</p>
     </div>
   </section>
 
@@ -1128,24 +1118,24 @@
     <div class="wrap">
       <div class="section-head">
         <div class="section-kicker">FAQ</div>
-        <h2 class="section-h2">使う前に気になるところだけ整理します。</h2>
+        <h2 class="section-h2">A few questions before you start.</h2>
       </div>
       <div class="faq-grid">
         <article class="faq-item">
-          <h3>データはどこに保存されますか？</h3>
-          <p>現時点では、すべてのデータはお使いの端末内にのみ保存されます。サーバーへの送信・クラウド保存は行っていないため、プライバシーの心配はありません。</p>
+          <h3>Where is my data stored?</h3>
+          <p>All data stays on your device. Nothing is sent to servers or stored in the cloud. Your privacy is protected.</p>
         </article>
         <article class="faq-item">
-          <h3>無料でどこまで試せますか？</h3>
-          <p>感情記録・カレンダー表示は無料でお使いいただけます。Emo+（月額¥680）では、気分の流れをグラフで把握したり、AIが毎朝問いかけてくれたり、先週の自分を月曜に振り返れるようになります。30日間無料トライアルあり。</p>
+          <h3>What's free?</h3>
+          <p>Emotion recording and calendar review are free. With Emo+ (monthly subscription), you can track mood trends over time, get AI-powered morning reflections based on yesterday's record, and receive a weekly summary every Monday. 30-day free trial available.</p>
         </article>
         <article class="faq-item">
-          <h3>どんな人に向いていますか？</h3>
-          <p>文章を書くのがしんどい人、感情を人前で出しづらい人、写真は撮るけど気持ちの振り返りが残っていない人に向いています。</p>
+          <h3>Who is this for?</h3>
+          <p>People who find writing exhausting, those who struggle to express feelings openly, or anyone who takes photos but has no record of how they actually felt.</p>
         </article>
         <article class="faq-item">
-          <h3>今すぐ始めるべきですか？</h3>
-          <p>しんどさの原因がぼやけているなら、今すぐが最適です。1週間だけ試して、合わなければやめればいい。それだけです。</p>
+          <h3>Should I start now?</h3>
+          <p>If the cause of your stress feels blurry, now is the right time. Try it for a week. If it doesn't fit, just stop. That's all.</p>
         </article>
       </div>
     </div>
@@ -1156,19 +1146,19 @@
     <div class="wrap">
       <div class="leadgen-grid">
         <article class="leadgen-main">
-          <h2>1週間だけ、試してみてください。</h2>
-          <p>感情が残る感覚は、説明より体験の方が早い。Emo+ は30日間の無料トライアル付き。</p>
-          <a class="leadgen-btn js-dl" href="#">App Store でダウンロード</a>
-          <span class="leadgen-btn-note">App Store · 無料ダウンロード · Emo+ 30日間無料トライアル</span>
+          <h2>Try it for just one week.</h2>
+          <p>The feeling of emotions being preserved is faster to experience than to explain. Free to download — Emo+ includes a 30-day free trial.</p>
+          <a class="leadgen-btn js-dl" href="#">Download on App Store</a>
+          <span class="leadgen-btn-note">App Store · Free download · Emo+ 30-day free trial</span>
         </article>
         <article class="target-card">
-          <h3>こんな人に刺さります</h3>
+          <h3>This is for you if...</h3>
           <ul class="target-list">
-            <li>日記アプリは続かなかった</li>
-            <li>写真フォルダはあるのに気持ちの記録がない</li>
-            <li>自分のストレスの原因を掴みたい</li>
-            <li>内省をもっと軽く始めたい</li>
-            <li>感情を人前で出しづらい</li>
+            <li>Journaling apps never stuck</li>
+            <li>You have a camera roll, but no emotional record</li>
+            <li>You want to understand what's stressing you</li>
+            <li>You want to start self-reflection more lightly</li>
+            <li>You find it hard to show your feelings openly</li>
           </ul>
         </article>
       </div>
@@ -1183,14 +1173,14 @@
   <div class="wrap footer-inner">
     <div class="footer-brand">
       <strong>EmoSnap</strong>
-      <p>写真とメモで感情を残して、あとから自分を理解し直す感情記録アプリ。</p>
+      <p>An iOS emotion journal — capture how you feel with photos.</p>
     </div>
     <nav class="footer-links">
       <a href="#faq">FAQ</a>
-      <a href="#value">価値</a>
-      <a href="privacy-lp.html">プライバシー</a>
-      <a href="terms.html">利用規約</a>
-      <a href="#" class="js-dl">ダウンロード</a>
+      <a href="#value">Value</a>
+      <a href="privacy-lp.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="#" class="js-dl">Download</a>
     </nav>
   </div>
   <div class="footer-copy">© 2026 EmoSnap</div>
@@ -1200,9 +1190,9 @@
 <div id="dlModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(26,22,18,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;">
   <div style="background:#FFFCF8;border-radius:26px;padding:36px 28px;max-width:340px;width:90%;text-align:center;box-shadow:0 24px 64px rgba(26,22,18,0.18);">
     <div style="font-size:2.4rem;margin-bottom:12px;">🚀</div>
-    <h2 style="font-family:'Fraunces',serif;font-size:1.4rem;margin:0 0 10px;color:#1A1612;">もうすぐリリース！</h2>
-    <p style="color:#4A3F35;line-height:1.7;margin:0 0 24px;font-size:0.95rem;">現在リリースに向けて準備中です。<br>もう少しだけお待ちください。</p>
-    <button id="dlModalClose" style="background:#E8593A;color:#fff;border:none;border-radius:50px;padding:12px 28px;font-size:1rem;font-weight:700;cursor:pointer;width:100%;">閉じる</button>
+    <h2 style="font-size:1.4rem;margin:0 0 10px;color:#1A1612;">Coming Soon!</h2>
+    <p style="color:#4A3F35;line-height:1.7;margin:0 0 24px;font-size:0.95rem;">EmoSnap is coming soon.<br>We're putting the finishing touches on it — stay tuned!</p>
+    <button id="dlModalClose" style="background:#E8593A;color:#fff;border:none;border-radius:50px;padding:12px 28px;font-size:1rem;font-weight:700;cursor:pointer;width:100%;">Close</button>
   </div>
 </div>
 
