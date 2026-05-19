@@ -809,7 +809,7 @@
           </a>
         </div>
       </div>
-      <a class="nav-cta js-dl" href="#">Download</a>
+      <a class="nav-cta js-dl" href="https://apps.apple.com/app/id6504531019" target="_blank" rel="noopener">Download</a>
     </nav>
   </div>
 </header>
@@ -847,7 +847,7 @@
           </div>
 
           <div class="cta-stack">
-            <a class="cta-main js-dl" href="#">Download on App Store</a>
+            <a class="cta-main js-dl" href="https://apps.apple.com/app/id6504531019" target="_blank" rel="noopener">Download on App Store</a>
             <span class="cta-note">Free to download on the App Store. Emo+ includes a 30-day free trial.</span>
             <div class="cta-trust">
               <span>📱 Data stays on your device</span>
@@ -1156,7 +1156,7 @@
         <article class="leadgen-main">
           <h2>Try it for just one week.</h2>
           <p>The feeling of emotions being preserved is faster to experience than to explain. Free to download — Emo+ includes a 30-day free trial.</p>
-          <a class="leadgen-btn js-dl" href="#">Download on App Store</a>
+          <a class="leadgen-btn js-dl" href="https://apps.apple.com/app/id6504531019" target="_blank" rel="noopener">Download on App Store</a>
           <span class="leadgen-btn-note">App Store · Free download · Emo+ 30-day free trial</span>
         </article>
         <article class="target-card">
@@ -1188,21 +1188,12 @@
       <a href="#value">Value</a>
       <a href="privacy-lp.html">Privacy</a>
       <a href="terms.html">Terms</a>
-      <a href="#" class="js-dl">Download</a>
+      <a href="https://apps.apple.com/app/id6504531019" target="_blank" rel="noopener" class="js-dl">Download</a>
     </nav>
   </div>
   <div class="footer-copy">© 2026 EmoSnap</div>
 </footer>
 
-<!-- ── Coming Soon Modal ── -->
-<div id="dlModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(26,22,18,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;">
-  <div style="background:#FFFCF8;border-radius:26px;padding:36px 28px;max-width:340px;width:90%;text-align:center;box-shadow:0 24px 64px rgba(26,22,18,0.18);">
-    <div style="font-size:2.4rem;margin-bottom:12px;">🚀</div>
-    <h2 style="font-size:1.4rem;margin:0 0 10px;color:#1A1612;">Coming Soon!</h2>
-    <p style="color:#4A3F35;line-height:1.7;margin:0 0 24px;font-size:0.95rem;">EmoSnap is coming soon.<br>We're putting the finishing touches on it — stay tuned!</p>
-    <button id="dlModalClose" style="background:#E8593A;color:#fff;border:none;border-radius:50px;padding:12px 28px;font-size:1rem;font-weight:700;cursor:pointer;width:100%;">Close</button>
-  </div>
-</div>
 
 <script>
   /* ── Lang switcher ── */
@@ -1243,23 +1234,6 @@
     targets.forEach(function (el) { io.observe(el); });
   })();
 
-  /* ── Coming Soon Modal ── */
-  (function () {
-    var modal = document.getElementById('dlModal');
-    var closeBtn = document.getElementById('dlModalClose');
-    document.querySelectorAll('.js-dl').forEach(function (el) {
-      el.addEventListener('click', function (e) {
-        e.preventDefault();
-        modal.style.display = 'flex';
-      });
-    });
-    closeBtn.addEventListener('click', function () {
-      modal.style.display = 'none';
-    });
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) modal.style.display = 'none';
-    });
-  })();
 </script>
 </body>
 </html>

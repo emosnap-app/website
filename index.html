@@ -816,7 +816,7 @@
           </a>
         </div>
       </div>
-      <a class="nav-cta js-dl" href="#">ダウンロード</a>
+      <a class="nav-cta js-dl" href="https://apps.apple.com/app/id6504531019" target="_blank" rel="noopener">ダウンロード</a>
     </nav>
   </div>
 </header>
@@ -854,7 +854,7 @@
           </div>
 
           <div class="cta-stack">
-            <a class="cta-main js-dl" href="#">App Store でダウンロード</a>
+            <a class="cta-main js-dl" href="https://apps.apple.com/app/id6504531019" target="_blank" rel="noopener">App Store でダウンロード</a>
             <span class="cta-note">App Store から無料でダウンロードできます。Emo+ は30日間無料でお試しいただけます。</span>
             <div class="cta-trust">
               <span>📱 データは端末内に保管</span>
@@ -1166,7 +1166,7 @@
         <article class="leadgen-main">
           <h2>1週間だけ、試してみてください。</h2>
           <p>感情が残る感覚は、説明より体験の方が早い。Emo+ は30日間の無料トライアル付き。</p>
-          <a class="leadgen-btn js-dl" href="#">App Store でダウンロード</a>
+          <a class="leadgen-btn js-dl" href="https://apps.apple.com/app/id6504531019" target="_blank" rel="noopener">App Store でダウンロード</a>
           <span class="leadgen-btn-note">App Store · 無料ダウンロード · Emo+ 30日間無料トライアル</span>
         </article>
         <article class="target-card">
@@ -1198,21 +1198,12 @@
       <a href="#value">価値</a>
       <a href="privacy-lp.html">プライバシー</a>
       <a href="terms.html">利用規約</a>
-      <a href="#" class="js-dl">ダウンロード</a>
+      <a href="https://apps.apple.com/app/id6504531019" target="_blank" rel="noopener" class="js-dl">ダウンロード</a>
     </nav>
   </div>
   <div class="footer-copy">© 2026 EmoSnap</div>
 </footer>
 
-<!-- ── Coming Soon Modal ── -->
-<div id="dlModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(26,22,18,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;">
-  <div style="background:#FFFCF8;border-radius:26px;padding:36px 28px;max-width:340px;width:90%;text-align:center;box-shadow:0 24px 64px rgba(26,22,18,0.18);">
-    <div style="font-size:2.4rem;margin-bottom:12px;">🚀</div>
-    <h2 style="font-family:'Fraunces',serif;font-size:1.4rem;margin:0 0 10px;color:#1A1612;">もうすぐリリース！</h2>
-    <p style="color:#4A3F35;line-height:1.7;margin:0 0 24px;font-size:0.95rem;">現在リリースに向けて準備中です。<br>もう少しだけお待ちください。</p>
-    <button id="dlModalClose" style="background:#E8593A;color:#fff;border:none;border-radius:50px;padding:12px 28px;font-size:1rem;font-weight:700;cursor:pointer;width:100%;">閉じる</button>
-  </div>
-</div>
 
 <script>
   /* ── Lang switcher ── */
@@ -1253,23 +1244,6 @@
     targets.forEach(function (el) { io.observe(el); });
   })();
 
-  /* ── Coming Soon Modal ── */
-  (function () {
-    var modal = document.getElementById('dlModal');
-    var closeBtn = document.getElementById('dlModalClose');
-    document.querySelectorAll('.js-dl').forEach(function (el) {
-      el.addEventListener('click', function (e) {
-        e.preventDefault();
-        modal.style.display = 'flex';
-      });
-    });
-    closeBtn.addEventListener('click', function () {
-      modal.style.display = 'none';
-    });
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) modal.style.display = 'none';
-    });
-  })();
 </script>
 </body>
 </html>
