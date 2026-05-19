@@ -1195,6 +1195,16 @@
 </footer>
 
 
+<!-- ── Under Review Modal ── -->
+<div id="dlModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(26,22,18,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+  <div style="background:#FFFCF8;border-radius:26px;padding:36px 28px;max-width:340px;width:90%;text-align:center;box-shadow:0 24px 64px rgba(26,22,18,0.18);">
+    <div style="font-size:2.4rem;margin-bottom:12px;">🔍</div>
+    <h2 style="font-family:'Fraunces',serif;font-size:1.4rem;margin:0 0 10px;color:#1A1612;">Under Review</h2>
+    <p style="color:#4A3F35;line-height:1.7;margin:0 0 24px;font-size:0.95rem;">EmoSnap is currently under App Store review.<br>It will be available for download very soon 🙏</p>
+    <button id="dlModalClose" style="background:#E8593A;color:#fff;border:none;border-radius:50px;padding:12px 28px;font-size:1rem;font-weight:700;cursor:pointer;width:100%;">Close</button>
+  </div>
+</div>
+
 <script>
   /* ── Lang switcher ── */
   (function () {
@@ -1234,6 +1244,23 @@
     targets.forEach(function (el) { io.observe(el); });
   })();
 
+  /* ── Under Review Modal ── */
+  (function () {
+    var modal = document.getElementById('dlModal');
+    var closeBtn = document.getElementById('dlModalClose');
+    document.querySelectorAll('.js-dl').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        modal.style.display = 'flex';
+      });
+    });
+    closeBtn.addEventListener('click', function () {
+      modal.style.display = 'none';
+    });
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+  })();
 </script>
 </body>
 </html>
