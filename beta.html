@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EmoSnap ベータ版インストールガイド</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <style>
+    :root {
+      --brand: #E8593A;
+      --brand-light: #FFF0EC;
+      --bg: #FAF6F0;
+      --paper: #FFFCF8;
+      --ink: #1A1612;
+      --ink-mid: #4A3F35;
+      --ink-soft: #9A8E85;
+      --line: rgba(26,22,18,0.08);
+      --warn-bg: #FFF8EC;
+      --warn-border: #F5C842;
+      --warn-ink: #7A5C00;
+      --ok-bg: #EDFAF3;
+      --ok-border: #3DB87A;
+      --ok-ink: #1A6640;
+      --r: 20px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      padding: 0 0 60px;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      padding: 24px 20px 20px;
+      text-align: center;
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .header-logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+    }
+    .header-logo span {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .header p {
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+    }
+
+    /* ── Container ── */
+    .wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ── QR section ── */
+    .qr-section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      margin: 20px 0;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .qr-section h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink-mid);
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+    .qr-section img.qr {
+      width: 160px;
+      height: 160px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      margin-bottom: 16px;
+    }
+    .qr-section .tf-btn {
+      display: inline-block;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .qr-section .tf-note {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+
+    /* ── Steps ── */
+    .steps-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      margin: 28px 0 12px;
+    }
+    .step {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .step-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .step-title {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.4;
+      padding-top: 5px;
+    }
+    .step-body {
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      padding-left: 46px;
+    }
+    .step-body p + p { margin-top: 6px; }
+
+    /* ── Trouble section ── */
+    .trouble {
+      background: var(--warn-bg);
+      border: 1.5px solid var(--warn-border);
+      border-radius: var(--r);
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .trouble-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .trouble-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+    .trouble-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--warn-ink);
+    }
+    .trouble-subtitle {
+      font-size: 0.78rem;
+      color: var(--warn-ink);
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    /* dialog mock */
+    .dialog-mock {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      max-width: 240px;
+      margin: 0 auto 16px;
+      overflow: hidden;
+      font-size: 0.82rem;
+    }
+    .dialog-mock-body {
+      padding: 16px 16px 0;
+      text-align: center;
+    }
+    .dialog-mock-body .dialog-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+    .dialog-mock-body .dialog-text {
+      color: #555;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+    .dialog-mock-body input {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 0.85rem;
+      background: #f5f5f7;
+      margin-bottom: 14px;
+      color: #888;
+    }
+    .dialog-mock-btns {
+      display: flex;
+      border-top: 1px solid #e0e0e0;
+    }
+    .dialog-mock-btns button {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 12px 0;
+      font-size: 0.88rem;
+      cursor: default;
+    }
+    .dialog-mock-btns .btn-cancel {
+      border-right: 1px solid #e0e0e0;
+      color: #555;
+    }
+    .dialog-mock-btns .btn-ok {
+      color: #007AFF;
+      font-weight: 600;
+    }
+
+    .trouble-steps {
+      list-style: none;
+      padding: 0;
+    }
+    .trouble-steps li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.88rem;
+      color: var(--warn-ink);
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(245,200,66,0.3);
+    }
+    .trouble-steps li:last-child { border-bottom: none; }
+    .trouble-steps .t-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: var(--warn-border);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #7A5C00;
+      margin-top: 1px;
+    }
+
+    /* ── OK banner ── */
+    .ok-banner {
+      background: var(--ok-bg);
+      border: 1.5px solid var(--ok-border);
+      border-radius: var(--r);
+      padding: 16px 20px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .ok-banner .ok-icon { font-size: 1.5rem; line-height: 1; }
+    .ok-banner .ok-text { font-size: 0.88rem; color: var(--ok-ink); font-weight: 600; }
+    .ok-banner .ok-sub { font-size: 0.8rem; color: var(--ok-ink); opacity: 0.8; margin-top: 2px; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+    .footer a { color: var(--brand); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-logo">
+      <img src="assets/logo.png" alt="EmoSnap">
+      <span>EmoSnap</span>
+    </div>
+    <p>ベータ版インストールガイド</p>
+  </div>
+
+  <div class="wrap">
+
+    <!-- QR / Link -->
+    <div class="qr-section">
+      <h2>TestFlight からインストール</h2>
+      <img class="qr"
+        src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=https%3A%2F%2Ftestflight.apple.com%2Fjoin%2FbrPbWXyK"
+        alt="TestFlight QRコード">
+      <br>
+      <a class="tf-btn" href="https://testflight.apple.com/join/brPbWXyK">TestFlightで開く</a>
+      <p class="tf-note">iPhone のみ対応 · TestFlight アプリが必要です</p>
+    </div>
+
+    <p class="steps-title">インストール手順</p>
+
+    <!-- Step 1 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">TestFlight アプリをインストール</div>
+      </div>
+      <div class="step-body">
+        <p>TestFlight は Apple 公式のベータ版アプリ配布サービスです。EmoSnap のインストールに必要です。</p>
+        <p>まだ入れていない場合は App Store から <strong>TestFlight</strong>（無料）をインストールしてください。</p>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">QR コードを読み取る or リンクをタップ</div>
+      </div>
+      <div class="step-body">
+        <p>カメラで QR コードを読み取るか、上のボタンをタップしてください。</p>
+        <p>TestFlight アプリが起動して EmoSnap のインストール画面が表示されます。</p>
+      </div>
+    </div>
+
+    <!-- Step 3: Trouble -->
+    <div class="trouble">
+      <div class="trouble-header">
+        <div class="trouble-icon">⚠️</div>
+        <div>
+          <div class="trouble-title">「コードを使う」が出たら？</div>
+          <div class="trouble-subtitle">よくあるトラブルです。焦らず以下の手順で。</div>
+        </div>
+      </div>
+
+      <!-- Dialog mock -->
+      <div class="dialog-mock">
+        <div class="dialog-mock-body">
+          <div class="dialog-title">コードを使う</div>
+          <div class="dialog-text">TestFlightの招待コードを入力してください。</div>
+          <input type="text" value="XXXXXXXX" readonly>
+        </div>
+        <div class="dialog-mock-btns">
+          <button class="btn-cancel">キャンセル</button>
+          <button class="btn-ok">コードを使う</button>
+        </div>
+      </div>
+
+      <ul class="trouble-steps">
+        <li>
+          <div class="t-num">1</div>
+          <div>この画面が出たら <strong>「キャンセル」</strong> をタップして閉じる<br><span style="font-size:0.8em;opacity:0.8">（コードは入力しない）</span></div>
+        </li>
+        <li>
+          <div class="t-num">2</div>
+          <div>ホーム画面に戻って <strong>TestFlight アプリを起動</strong> する</div>
+        </li>
+        <li>
+          <div class="t-num">3</div>
+          <div>アプリ一覧に <strong>EmoSnap が表示</strong> されているのでインストールをタップ</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">4</div>
+        <div class="step-title">「インストール」をタップして完了</div>
+      </div>
+      <div class="step-body">
+        <p>インストール後、ホーム画面に EmoSnap のアイコンが追加されます。</p>
+      </div>
+    </div>
+
+    <!-- OK -->
+    <div class="ok-banner">
+      <div class="ok-icon">🎉</div>
+      <div>
+        <div class="ok-text">これで完了です！</div>
+        <div class="ok-sub">起動してすぐ使えます。感想・気づきはお気軽に！</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p><a href="https://www.emosnap.com">EmoSnap 公式サイト</a> · <a href="mailto:emosnap.app@gmail.com">お問い合わせ</a></p>
+    </div>
+
+  </div>
+</body>
+</html>
